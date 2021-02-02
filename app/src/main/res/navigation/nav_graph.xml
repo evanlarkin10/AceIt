@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HomeScreen">
+
+    <fragment
+        android:id="@+id/HomeScreen"
+        android:name="ca.unb.mobiledev.aceit.HomeScreen"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/home_screen">
+
+        <action
+            android:id="@+id/action_home_to_start"
+            app:destination="@id/StartGame" />
+        <action
+            android:id="@+id/action_home_to_join"
+            app:destination="@id/JoinGame" />
+        <action
+            android:id="@+id/action_home_to_rules"
+            app:destination="@id/RulesScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/StartGame"
+        android:name="ca.unb.mobiledev.aceit.StartGame"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/start_game">
+
+        <action
+            android:id="@+id/action_start_to_home"
+            app:destination="@id/HomeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/JoinGame"
+        android:name="ca.unb.mobiledev.aceit.JoinGame"
+        android:label="JoinGame" >
+        <action
+            android:id="@+id/action_join_to_home"
+            app:destination="@id/HomeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/RulesScreen"
+        android:name="ca.unb.mobiledev.aceit.Rules"
+        android:label="Rules" >
+        <action
+            android:id="@+id/action_rules_to_home"
+            app:destination="@id/HomeScreen" />
+    </fragment>
+</navigation>
