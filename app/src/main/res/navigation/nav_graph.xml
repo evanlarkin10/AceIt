@@ -12,8 +12,8 @@
         tools:layout="@layout/home_screen">
 
         <action
-            android:id="@+id/action_home_to_start"
-            app:destination="@id/StartGame" />
+            android:id="@+id/action_home_to_select"
+            app:destination="@id/SelectGame" />
         <action
             android:id="@+id/action_home_to_join"
             app:destination="@id/JoinGame" />
@@ -26,9 +26,19 @@
         android:name="ca.unb.mobiledev.aceit.StartGame"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/start_game">
-
+        <action
+            android:id="@+id/action_lobby_to_game"
+            app:destination="@id/HomeScreen" />
         <action
             android:id="@+id/action_start_to_home"
+            app:destination="@id/HomeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/SelectGame"
+        android:name="ca.unb.mobiledev.aceit.SelectGame"
+        android:label="SelectGame" >
+        <action
+            android:id="@+id/action_select_to_home"
             app:destination="@id/HomeScreen" />
     </fragment>
     <fragment

@@ -23,15 +23,15 @@ public class HomeScreen extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.button_start).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.start_select_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(HomeScreen.this)
-                        .navigate(R.id.action_home_to_start);
+                        .navigate(R.id.action_home_to_select);
             }
         });
 
-        view.findViewById(R.id.button_join).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.join_game_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(HomeScreen.this)
@@ -39,7 +39,7 @@ public class HomeScreen extends Fragment {
             }
         });
 
-        view.findViewById(R.id.button_rules).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.rules_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(HomeScreen.this)
