@@ -43,7 +43,7 @@ public class SelectGame extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(SelectGame.this)
-                        .navigate(R.id.action_select_to_home);
+                        .navigate(R.id.action_select_to_catch_the_dealer);
             }
         });
 

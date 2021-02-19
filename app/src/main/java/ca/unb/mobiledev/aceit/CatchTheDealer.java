@@ -1,8 +1,16 @@
 package ca.unb.mobiledev.aceit;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
-public class CatchTheDealer {
+enum GameStatus {
+    WAITING,
+    STARTED,
+    COMPLETED,
+    CANCELLED
+}
+public class CatchTheDealer implements Game {
     private String id;
     private ArrayList<User> users;
     private int turn=0;
@@ -21,6 +29,10 @@ public class CatchTheDealer {
     private int jack;
     private int queen;
     private int king;
+    private int maxPlayers;
+    private boolean isStarted;
+    public Deck deck;
+    private GameStatus status;
 
 
 
@@ -44,6 +56,10 @@ public class CatchTheDealer {
         this.jack=0;
         this.queen=0;
         this.king=0;
+        this.maxPlayers=10;
+        this.isStarted=false;
+        this.deck = new Deck();
+        this.status = GameStatus.WAITING;
     }
     public String getId(){
         return this.id;
@@ -85,6 +101,7 @@ public class CatchTheDealer {
     public int getKingCount(){
         return this.king;
     }
+    public boolean isStarted(){ return this.isStarted; }
 
     public int getStreak(){
         return this.streak;
@@ -95,6 +112,7 @@ public class CatchTheDealer {
     }
 
     public User getTurnUser(){
+
         return this.users.get(this.turn);
     }
 
@@ -103,6 +121,7 @@ public class CatchTheDealer {
     }
 
     public User getDealerUser(){
+
         return this.users.get(this.dealer);
     }
 
@@ -110,13 +129,25 @@ public class CatchTheDealer {
         return this.users;
     }
 
+    public Deck getDeck(){return this.deck;}
+
+    public void addUser(User user){
+        this.users.add(user);
+    }
+
+    public void start(){
+        this.isStarted=true;
+    }
+
     public void nextDealer(){
-        int dealerIndex = dealer+1 % users.size();
+
+        int dealerIndex = (this.dealer+1) % this.users.size();
         this.dealer=dealerIndex;
     }
 
     public void nextTurn(){
-        int turnIndex = turn+1 % users.size();
+
+        int turnIndex = (this.turn+1) % this.users.size();
         this.turn=turnIndex;
     }
 
@@ -128,4 +159,48 @@ public class CatchTheDealer {
     public void resetStreak(){
         this.streak=0;
     }
+
+    public void incrementCard(String card){
+        switch(card.charAt(0)){
+            case 'A': this.ace++;break;
+            case '2': this.two++;break;
+            case '3': this.three++;break;
+            case '4': this.four++;break;
+            case '5': this.five++;break;
+            case '6': this.six++;break;
+            case '7': this.seven++;break;
+            case '8': this.eight++;break;
+            case '9': this.nine++;break;
+            case '1': this.ten++;break;
+            case 'J': this.jack++;break;
+            case 'Q': this.queen++;break;
+            case 'K': this.king++;break;
+        }
+    }
+
+
+
+    public String toString(){
+        String result = "";
+        result += "Dealer: " + this.getDealerUser().getName() + "\n";
+        result += "Turn: " + this.getTurnUser().getName() + "\n";
+        result += "Streak: " + this.getStreak()+"\n";
+        result += "A:" + this.getAceCount() + " ";
+        result += "2:" + this.getTwoCount() + " ";
+        result += "3:" + this.getThreeCount() + " ";
+        result += "4:" + this.getFourCount() + " ";
+        result += "5:" + this.getFiveCount() + " ";
+        result += "6:" + this.getSixCount() + " ";
+        result += "7:" + this.getSevenCount() + " ";
+        result += "8:" + this.getEightCount() + " ";
+        result += "9:" + this.getNineCount() + " ";
+        result += "10:" + this.getTenCount() + " ";
+        result += "J:" + this.getJackCount() + " ";
+        result += "Q:" + this.getQueenCount() + " ";
+        result += "K:" + this.getKingCount() + " ";
+        result+="Users" + this.users.size();
+        return result;
+    }
+
+
 }

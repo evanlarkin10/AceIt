@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/catch_the_dealer_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/catch_the_dealer"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/lower_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="67dp"
+        android:text="Higher"
+        app:layout_constraintStart_toEndOf="@+id/ctd_table_layout"
+        app:layout_constraintTop_toBottomOf="@+id/eventText" />
+
+    <Button
+        android:id="@+id/lower_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:text="Lower"
+        app:layout_constraintStart_toEndOf="@+id/ctd_table_layout"
+        app:layout_constraintTop_toBottomOf="@+id/lower_button" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="76dp"
+        android:layout_height="87dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/back" />
+
+    <TextView
+        android:id="@+id/eventText"
+        android:layout_width="228dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:text="Event"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ctd_table_layout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/drawText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="15dp"
+        android:text="Draw"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TableLayout
+        android:id="@+id/ctd_table_layout"
+        android:layout_width="397dp"
+        android:layout_height="339dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+        android:stretchColumns="*"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/catch_the_dealer_title">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/cardImgAD"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="0"
+                app:srcCompat="@drawable/ad" />
+
+            <ImageView
+                android:id="@+id/cardImg2D"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="1"
+                app:srcCompat="@drawable/d2" />
+
+            <ImageView
+                android:id="@+id/cardImg3D"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/cardImg4D"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="3"
+                app:srcCompat="@drawable/d4" />
+
+            <ImageView
+                android:id="@+id/cardImg5D"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="4"
+                app:srcCompat="@drawable/d5" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/aceCount"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/twoCount"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/threeCount"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fourCount"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fiveCount"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/cardImg6D"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="0"
+                app:srcCompat="@drawable/d6" />
+
+            <ImageView
+                android:id="@+id/cardImg7D"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="1"
+                app:srcCompat="@drawable/d7" />
+
+            <ImageView
+                android:id="@+id/cardImg8D"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d8" />
+
+            <ImageView
+                android:id="@+id/cardImg9D"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="3"
+                app:srcCompat="@drawable/d9" />
+
+            <ImageView
+                android:id="@+id/cardImg10D"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="4"
+                app:srcCompat="@drawable/d10" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/sixCount"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/sevenCount"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/eightCount"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nineCount"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tenCount"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/cardImgJD"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="1"
+                app:srcCompat="@drawable/dj" />
+
+            <ImageView
+                android:id="@+id/cardImgQD"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/dq" />
+
+            <ImageView
+                android:id="@+id/cardImgKD"
+                android:layout_width="55dp"
+                android:layout_height="84dp"
+                android:layout_column="3"
+                app:srcCompat="@drawable/dk" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/jackCount"
+                android:layout_column="1"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/queenCount"
+                android:layout_column="2"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/kingCount"
+                android:layout_column="3"
+                android:text="0"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+        </TableRow>
+
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/dealerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="20dp"
+        android:text="Dealer:"
+        app:layout_constraintBottom_toTopOf="@+id/turnText"
+        app:layout_constraintStart_toEndOf="@+id/ctd_table_layout" />
+
+    <TextView
+        android:id="@+id/turnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="20dp"
+        android:text="Turn:"
+        app:layout_constraintBottom_toTopOf="@+id/streakText"
+        app:layout_constraintStart_toEndOf="@+id/ctd_table_layout" />
+
+    <TextView
+        android:id="@+id/streakText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="43dp"
+        android:text="Streak:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ctd_table_layout" />
+</androidx.constraintlayout.widget.ConstraintLayout>

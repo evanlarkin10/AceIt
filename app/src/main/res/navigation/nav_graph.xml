@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_select_to_home"
             app:destination="@id/HomeScreen" />
+        <action
+            android:id="@+id/action_select_to_catch_the_dealer"
+            app:destination="@id/CatchTheDealerScreen" />
     </fragment>
     <fragment
         android:id="@+id/JoinGame"
@@ -57,4 +60,8 @@
             android:id="@+id/action_rules_to_home"
             app:destination="@id/HomeScreen" />
     </fragment>
+    <fragment
+        android:id="@+id/CatchTheDealerScreen"
+        android:name="ca.unb.mobiledev.aceit.CatchTheDealerScreen"
+        android:label="CatchTheDealerScreen" />
 </navigation>
