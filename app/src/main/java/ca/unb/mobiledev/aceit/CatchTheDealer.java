@@ -4,31 +4,25 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-enum GameStatus {
-    WAITING,
-    STARTED,
-    COMPLETED,
-    CANCELLED
-}
 public class CatchTheDealer implements Game {
     private String id;
     private ArrayList<User> users;
     private int turn=0;
     private int dealer=0;
     private int streak=0;
-    private int ace;
-    private int two;
-    private int three;
-    private int four;
-    private int five;
-    private int six;
-    private int seven;
-    private int eight;
-    private int nine;
-    private int ten;
-    private int jack;
-    private int queen;
-    private int king;
+    private int aceCount;
+    private int twoCount;
+    private int threeCount;
+    private int fourCount;
+    private int fiveCount;
+    private int sixCount;
+    private int sevenCount;
+    private int eightCount;
+    private int nineCount;
+    private int tenCount;
+    private int jackCount;
+    private int queenCount;
+    private int kingCount;
     private int maxPlayers;
     private boolean isStarted;
     public Deck deck;
@@ -43,19 +37,19 @@ public class CatchTheDealer implements Game {
         this.id=id;
         this.users=new ArrayList<User>();
         this.users.add(host);
-        this.ace=0;
-        this.two=0;
-        this.three=0;
-        this.four = 0;
-        this.five=0;
-        this.six=0;
-        this.seven =0;
-        this.eight=0;
-        this.nine=0;
-        this.ten=0;
-        this.jack=0;
-        this.queen=0;
-        this.king=0;
+        this.aceCount=0;
+        this.twoCount=0;
+        this.threeCount=0;
+        this.fourCount = 0;
+        this.fiveCount=0;
+        this.sixCount=0;
+        this.sevenCount =0;
+        this.eightCount=0;
+        this.nineCount=0;
+        this.tenCount=0;
+        this.jackCount=0;
+        this.queenCount=0;
+        this.kingCount=0;
         this.maxPlayers=10;
         this.isStarted=false;
         this.deck = new Deck();
@@ -65,41 +59,41 @@ public class CatchTheDealer implements Game {
         return this.id;
     }
     public int getAceCount(){
-        return this.ace;
+        return this.aceCount;
     }
-    public int getTwoCount(){return this.two; }
+    public int getTwoCount(){return this.twoCount; }
     public int getThreeCount(){
-        return this.three;
+        return this.threeCount;
     }
     public int getFourCount(){
-        return this.four;
+        return this.fourCount;
     }
     public int getFiveCount(){
-        return this.five;
+        return this.fiveCount;
     }
     public int getSixCount(){
-        return this.six;
+        return this.sixCount;
     }
     public int getSevenCount(){
-        return this.seven;
+        return this.sevenCount;
     }
     public int getEightCount(){
-        return this.eight;
+        return this.eightCount;
     }
     public int getNineCount(){
-        return this.nine;
+        return this.nineCount;
     }
     public int getTenCount(){
-        return this.ten;
+        return this.tenCount;
     }
     public int getJackCount(){
-        return this.jack;
+        return this.jackCount;
     }
     public int getQueenCount(){
-        return this.queen;
+        return this.queenCount;
     }
     public int getKingCount(){
-        return this.king;
+        return this.kingCount;
     }
     public boolean isStarted(){ return this.isStarted; }
 
@@ -162,19 +156,19 @@ public class CatchTheDealer implements Game {
 
     public void incrementCard(String card){
         switch(card.charAt(0)){
-            case 'A': this.ace++;break;
-            case '2': this.two++;break;
-            case '3': this.three++;break;
-            case '4': this.four++;break;
-            case '5': this.five++;break;
-            case '6': this.six++;break;
-            case '7': this.seven++;break;
-            case '8': this.eight++;break;
-            case '9': this.nine++;break;
-            case '1': this.ten++;break;
-            case 'J': this.jack++;break;
-            case 'Q': this.queen++;break;
-            case 'K': this.king++;break;
+            case 'A': this.aceCount++;break;
+            case '2': this.twoCount++;break;
+            case '3': this.threeCount++;break;
+            case '4': this.fourCount++;break;
+            case '5': this.fiveCount++;break;
+            case '6': this.sixCount++;break;
+            case '7': this.sevenCount++;break;
+            case '8': this.eightCount++;break;
+            case '9': this.nineCount++;break;
+            case '1': this.tenCount++;break;
+            case 'J': this.jackCount++;break;
+            case 'Q': this.queenCount++;break;
+            case 'K': this.kingCount++;break;
         }
     }
 

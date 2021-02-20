@@ -22,16 +22,16 @@
             app:destination="@id/RulesScreen" />
     </fragment>
     <fragment
-        android:id="@+id/StartGame"
-        android:name="ca.unb.mobiledev.aceit.StartGame"
+        android:id="@+id/CatchTheDealerLobby"
+        android:name="ca.unb.mobiledev.aceit.CatchTheDealerLobby"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/start_game">
-        <action
-            android:id="@+id/action_lobby_to_game"
-            app:destination="@id/HomeScreen" />
+        tools:layout="@layout/lobby">
         <action
             android:id="@+id/action_start_to_home"
             app:destination="@id/HomeScreen" />
+        <action
+            android:id="@+id/action_start_to_catch_the_dealer"
+            app:destination="@id/CatchTheDealerScreen" />
     </fragment>
     <fragment
         android:id="@+id/SelectGame"
@@ -41,8 +41,9 @@
             android:id="@+id/action_select_to_home"
             app:destination="@id/HomeScreen" />
         <action
-            android:id="@+id/action_select_to_catch_the_dealer"
-            app:destination="@id/CatchTheDealerScreen" />
+            android:id="@+id/action_select_to_catch_the_dealer_lobby"
+            app:destination="@id/CatchTheDealerLobby" />
+
     </fragment>
     <fragment
         android:id="@+id/JoinGame"

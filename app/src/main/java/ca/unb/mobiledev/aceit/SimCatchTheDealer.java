@@ -5,7 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class SimCatchTheDealer {
-    private String TAG ="SIM_CATCH_THE_DEALER_SCREEN";
+    private String TAG ="CATCH_THE_DEALER_SIM";
     private CatchTheDealer game;
 
 
