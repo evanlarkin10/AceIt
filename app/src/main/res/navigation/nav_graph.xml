@@ -64,5 +64,9 @@
     <fragment
         android:id="@+id/CatchTheDealerScreen"
         android:name="ca.unb.mobiledev.aceit.CatchTheDealerScreen"
-        android:label="CatchTheDealerScreen" />
+        android:label="CatchTheDealerScreen" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

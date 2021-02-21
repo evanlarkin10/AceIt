@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="10dp"
         android:text="@string/catch_the_dealer"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/lower_button"
+        android:id="@+id/higher_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginEnd="23dp"
@@ -31,9 +31,9 @@
     <Button
         android:id="@+id/lower_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="25dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
         android:text="Lower"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView2" />
@@ -52,12 +52,11 @@
         android:id="@+id/eventText"
         android:layout_width="228dp"
         android:layout_height="48dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginStart="15dp"
         android:text="Event"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/catch_the_dealer_title"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/catch_the_dealer_title" />
 
     <TextView
         android:id="@+id/drawText"
@@ -74,7 +73,7 @@
         android:id="@+id/ctd_table_layout"
         android:layout_width="404dp"
         android:layout_height="520dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:stretchColumns="*"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -310,28 +309,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
         android:text="Dealer:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ctd_table_layout" />
+        app:layout_constraintBottom_toTopOf="@+id/turnText"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/turnText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="10dp"
         android:text="Turn:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dealerText" />
+        app:layout_constraintBottom_toTopOf="@+id/streakText"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/streakText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="16dp"
         android:text="Streak:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/turnText" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

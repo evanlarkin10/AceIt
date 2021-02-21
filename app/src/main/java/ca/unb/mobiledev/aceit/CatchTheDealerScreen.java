@@ -45,6 +45,9 @@ public class CatchTheDealerScreen extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        CatchTheDealerScreenArgs args = CatchTheDealerScreenArgs.fromBundle(getArguments());
+        String id = args.getId();
+        Log.d(TAG, "MSG:" + id);
         //-------------Set up DB Listener
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
@@ -67,7 +70,7 @@ public class CatchTheDealerScreen extends Fragment {
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };
-        myRef.child("game1").addValueEventListener(gameListener);
+        myRef.child(id).addValueEventListener(gameListener);
         //-------------End set up DB Listener
 
         //---------------- Card Click Handlers
