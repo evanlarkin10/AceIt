@@ -39,28 +39,13 @@ public class MainActivity extends AppCompatActivity {
         ValueEventListener game1Listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                CatchTheDealer game = dataSnapshot.getValue(CatchTheDealer.class);
-                Log.d("TAG", "Game ID:"+ game.getId());
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Log.d("TAG", "Game ID: "+ ds.getValue().toString());
-                }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-            }
-        };
-        ValueEventListener game2Listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                CatchTheDealer game = dataSnapshot.getValue(CatchTheDealer.class);
-                Log.d("TAG", "Game ID:"+ game.getId());
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Log.d("TAG", "Game ID: "+ ds.getValue().toString());
-                }
+                Log.d(TAG, dataSnapshot.getValue().toString());
 
+
+                CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
+
+                Log.d(TAG, "Game ID:"+ game.getId());
             }
 
             @Override
@@ -70,13 +55,15 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+
+        User host = new User("1","Evan");
         myRef.child("game1").addValueEventListener(game1Listener);
-        myRef.child("game2").addValueEventListener(game2Listener);
+
         // [END read_message]
-        CatchTheDealer catchTheDealer1 = new CatchTheDealer("123");
-       CatchTheDealer catchTheDealer2 = new CatchTheDealer("1234");
+        CatchTheDealer catchTheDealer1 = new CatchTheDealer("123", host);
+
         myRef.child("game1").setValue(catchTheDealer1);
-        myRef.child("game2").setValue(catchTheDealer2);
+
     }
 
 

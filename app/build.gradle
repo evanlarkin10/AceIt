@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
 }
 apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+apply plugin: 'androidx.navigation.safeargs' //safe args
 
 
 android {

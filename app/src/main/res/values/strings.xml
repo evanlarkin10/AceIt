@@ -5,7 +5,13 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="start_game">Start Game</string>
+    <string name="lobby">Lobby</string>
+    <string name="players">Players:</string>
     <string name="join_game">Join Game</string>
+    <string name="select_game">Select Game</string>
+    <string name="horse_race">Horse Race</string>
+    <string name="catch_the_dealer">Catch the dealer</string>
+    <string name="cross_the_bridge">Cross the bridge</string>
     <string name="rules">Rules</string>
     <string name="previous">Previous</string>
 
