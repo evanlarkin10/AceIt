@@ -3,11 +3,16 @@ package ca.unb.mobiledev.aceit;
 import android.util.Log;
 
 import java.util.ArrayList;
+enum CatchTheDealerState{
+    DRAW,
+    GUESS1,
+    GUESS2,
+}
 
 public class CatchTheDealer implements Game {
     private String id;
     private ArrayList<User> users;
-    private int turn=0;
+    private int turn=1;
     private int dealer=0;
     private int streak=0;
     private int aceCount;
@@ -27,6 +32,8 @@ public class CatchTheDealer implements Game {
     private boolean isStarted;
     public Deck deck;
     private GameStatus status;
+    private CatchTheDealerState state;
+    private String cardDrawn;
 
 
 
@@ -54,6 +61,7 @@ public class CatchTheDealer implements Game {
         this.isStarted=false;
         this.deck = new Deck();
         this.status = GameStatus.WAITING;
+        this.state = CatchTheDealerState.DRAW;
     }
     public String getId(){
         return this.id;
@@ -105,19 +113,13 @@ public class CatchTheDealer implements Game {
         return this.turn;
     }
 
-    public User getTurnUser(){
 
-        return this.users.get(this.turn);
-    }
 
     public int getDealer(){
         return this.dealer;
     }
 
-    public User getDealerUser(){
 
-        return this.users.get(this.dealer);
-    }
 
     public ArrayList<User> getUsers(){
         return this.users;
@@ -150,6 +152,26 @@ public class CatchTheDealer implements Game {
         this.streak=streak;
     }
 
+    public GameStatus getStatus() {
+        return this.status;
+    }
+
+    public CatchTheDealerState getState() {
+        return this.state;
+    }
+
+    public void setState(CatchTheDealerState state) {
+        this.state = state;
+    }
+
+    public void setCardDrawn(String card){
+        cardDrawn=card;
+    }
+
+    public String getCardDrawn(){
+        return this.cardDrawn;
+    }
+
     public void resetStreak(){
         this.streak=0;
     }
@@ -176,8 +198,6 @@ public class CatchTheDealer implements Game {
 
     public String toString(){
         String result = "";
-        result += "Dealer: " + this.getDealerUser().getName() + "\n";
-        result += "Turn: " + this.getTurnUser().getName() + "\n";
         result += "Streak: " + this.getStreak()+"\n";
         result += "A:" + this.getAceCount() + " ";
         result += "2:" + this.getTwoCount() + " ";

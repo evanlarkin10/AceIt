@@ -1,5 +1,6 @@
 package ca.unb.mobiledev.aceit;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class CatchTheDealerLobby extends Fragment {
     private String TAG ="CATCH_THE_DEALER_LOBBY";
     private Button startBtn;
     private TextView countText;
+    private TextView gameCodeText;
 
     @Override
     public View onCreateView(
@@ -44,7 +46,11 @@ public class CatchTheDealerLobby extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
         String id =  java.util.UUID.randomUUID().toString().split("-")[0];
-        User host = new User("1","Evan");
+        SharedPreferences settings = getActivity().getApplicationContext().getSharedPreferences("NAME", 0);
+        String userName = settings.getString("name", "username");
+        String uid = settings.getString("uid", "id");
+        Log.d(TAG, "host id:" + uid + ", game id:" + id);
+        User host = new User(uid,userName);
         CatchTheDealer catchTheDealer = new CatchTheDealer(id, host);
         myRef.child(id).setValue(catchTheDealer);
 
@@ -59,21 +65,18 @@ public class CatchTheDealerLobby extends Fragment {
         startBtn.setClickable(false);
 
         countText = getActivity().findViewById(R.id.playersCountText);
-
-
+        gameCodeText = getActivity().findViewById(R.id.game_code_text);
+        gameCodeText.setText("Game Code: " + id);
 
         // LOBBY LISTENER
 
         ValueEventListener gameListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "LISTENED");
+
                 CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
                 ArrayList<User> users = game.getUsers();
-                for(User user:users){
-                    Log.d(TAG, "NAME:" + user.getName());
-                }
-                setLobbyState(users.size());
+                setLobbyState(users.size(), game);
                 MyAdapter myAdapter = new MyAdapter(users);
                 playerListView.setAdapter(myAdapter);
             }
@@ -107,23 +110,18 @@ public class CatchTheDealerLobby extends Fragment {
         });
     }
 
-    private void setLobbyState(int count){
-        Log.d(TAG, "Testing" + count);
-
-
-         this.countText.setText(count+"/10");
-
-
-        if(count>2){
-            this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.green));
-            this.startBtn.setClickable(true);
+    private void setLobbyState(int count, CatchTheDealer game){
+        if(game.getStatus().equals(GameStatus.WAITING)){
+            this.countText.setText(count+"/10");
+            if(count>2){
+                this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.green));
+                this.startBtn.setClickable(true);
+            }
+            else{
+                this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
+                this.startBtn.setClickable(false);
+            }
         }
-        else{
-            this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
-            this.startBtn.setClickable(false);
-        }
-
-
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -151,7 +149,6 @@ public class CatchTheDealerLobby extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            Log.d(TAG, "NAMEBIND:" + users.get(position).getName());
             final User user = users.get(position);
             holder.mTextView.setText(user.getName());
         }
