@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_start_to_catch_the_dealer"
             app:destination="@id/CatchTheDealerScreen" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/SelectGame"
@@ -52,6 +55,9 @@
         <action
             android:id="@+id/action_join_to_home"
             app:destination="@id/HomeScreen" />
+        <action
+            android:id="@+id/action_join_to_catch_the_dealer_lobby"
+            app:destination="@id/CatchTheDealerLobby" />
     </fragment>
     <fragment
         android:id="@+id/RulesScreen"

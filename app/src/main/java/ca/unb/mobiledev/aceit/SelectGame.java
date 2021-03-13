@@ -1,6 +1,8 @@
 package ca.unb.mobiledev.aceit;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SelectGame extends Fragment {
 
@@ -42,8 +47,20 @@ public class SelectGame extends Fragment {
         view.findViewById(R.id.button_select_catchthedealer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // GAME SETUP
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference();
+                String id =  java.util.UUID.randomUUID().toString().split("-")[0];
+                SharedPreferences settings = getActivity().getApplicationContext().getSharedPreferences("NAME", 0);
+                String userName = settings.getString("name", "username");
+                String uid = settings.getString("uid", "id");
+                User host = new User(uid,userName);
+                CatchTheDealer catchTheDealer = new CatchTheDealer(id, host);
+                Log.d("CATCH", "Game created id:" + id);
+                myRef.child(id).setValue(catchTheDealer);
+                SelectGameDirections.ActionSelectToCatchTheDealerLobby action = SelectGameDirections.actionSelectToCatchTheDealerLobby(id);
                 NavHostFragment.findNavController(SelectGame.this)
-                        .navigate(R.id.action_select_to_catch_the_dealer_lobby);
+                        .navigate(action);
             }
         });
 

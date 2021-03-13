@@ -42,20 +42,14 @@ public class CatchTheDealerLobby extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // GAME SETUP
+        CatchTheDealerScreenArgs args = CatchTheDealerScreenArgs.fromBundle(getArguments());
+        String id = args.getId();
+
+        //DB
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
-        String id =  java.util.UUID.randomUUID().toString().split("-")[0];
-        SharedPreferences settings = getActivity().getApplicationContext().getSharedPreferences("NAME", 0);
-        String userName = settings.getString("name", "username");
-        String uid = settings.getString("uid", "id");
-        Log.d(TAG, "host id:" + uid + ", game id:" + id);
-        User host = new User(uid,userName);
-        CatchTheDealer catchTheDealer = new CatchTheDealer(id, host);
-        myRef.child(id).setValue(catchTheDealer);
-
         // UI ELEMENTS
-        MyAdapter myAdapter = new MyAdapter(catchTheDealer.getUsers());
+        MyAdapter myAdapter = new MyAdapter(new ArrayList<>());
         RecyclerView playerListView = view.findViewById(R.id.players_list);
         playerListView.setLayoutManager(new LinearLayoutManager(getContext()));
         playerListView.setAdapter(myAdapter);
