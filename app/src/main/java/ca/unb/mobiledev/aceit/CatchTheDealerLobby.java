@@ -29,7 +29,7 @@ public class CatchTheDealerLobby extends Fragment {
     private Button startBtn;
     private TextView countText;
     private TextView gameCodeText;
-
+    private GameType gameType = GameType.CATCH_THE_DEALER;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -69,6 +69,7 @@ public class CatchTheDealerLobby extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
+
                 ArrayList<User> users = game.getUsers();
                 setLobbyState(users.size(), game);
                 MyAdapter myAdapter = new MyAdapter(users);
@@ -94,17 +95,20 @@ public class CatchTheDealerLobby extends Fragment {
         view.findViewById(R.id.start_game_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CatchTheDealerLobbyDirections.ActionStartToCatchTheDealer action = CatchTheDealerLobbyDirections.actionStartToCatchTheDealer(id);
+                CatchTheDealerLobbyDirections.ActionStartToCatchTheDealer actionCatch = CatchTheDealerLobbyDirections.actionStartToCatchTheDealer(id);
 
                 //action.setId("1234");
-
-                NavHostFragment.findNavController(CatchTheDealerLobby.this)
-                        .navigate(action);
+                Log.d(TAG, "GT"+gameType);
+                if(gameType==GameType.CATCH_THE_DEALER) {
+                    NavHostFragment.findNavController(CatchTheDealerLobby.this)
+                            .navigate(actionCatch);
+                }
             }
         });
     }
 
     private void setLobbyState(int count, CatchTheDealer game){
+        gameType = game.getGameType();
         if(game.getStatus().equals(GameStatus.WAITING)){
             this.countText.setText(count+"/10");
             if(count>2){

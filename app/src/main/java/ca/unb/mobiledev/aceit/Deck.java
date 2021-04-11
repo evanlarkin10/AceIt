@@ -61,8 +61,8 @@ public class Deck implements Serializable {
         int position = ran.nextInt(this.cards.size());
         String card = this.cards.get(position);
         this.cards.remove(position);
+        this.drawn=this.drawn+1;
         return card;
-
     }
 
     //Is c1 higher than c2?

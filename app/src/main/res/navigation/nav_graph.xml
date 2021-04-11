@@ -71,6 +71,9 @@
         android:id="@+id/CatchTheDealerScreen"
         android:name="ca.unb.mobiledev.aceit.CatchTheDealerScreen"
         android:label="CatchTheDealerScreen" >
+        <action
+            android:id="@+id/action_catch_the_dealer_home"
+            app:destination="@id/HomeScreen" />
         <argument
             android:name="id"
             app:argType="string" />

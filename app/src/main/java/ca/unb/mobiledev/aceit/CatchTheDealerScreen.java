@@ -1,5 +1,6 @@
 package ca.unb.mobiledev.aceit;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -307,15 +309,30 @@ public class CatchTheDealerScreen extends Fragment {
         Log.d(TAG, "Equal"+this.game.getState().equals(CatchTheDealerState.DRAW));
         Log.d(TAG, "Equal"+dealer.getId().equals(user_id));
         Log.d(TAG, "Equal"+this.game.getState().equals(CatchTheDealerState.GUESS1));
+        Log.d(TAG, "TurnID"+turn.getId() + " " +user_id);
         Log.d(TAG, "Equal"+turn.getId().equals(user_id));
 
+        // Game over
+        if(this.game.getStatus().equals(GameStatus.COMPLETED)){
+            NavHostFragment.findNavController(CatchTheDealerScreen.this)
+                    .navigate(R.id.action_catch_the_dealer_home);
+        }
+
+        // DRAW STATE
         if(this.game.getState().equals(CatchTheDealerState.DRAW)){
+            // YOUR DEAL
             if(dealer.getId().equals(user_id)){
+                //IS GAME OVER?
+                if(this.game.getDeck().getDrawn()==52){
+                    this.game.setStatus(GameStatus.COMPLETED);
+                    updateDB();
+                }
                 Log.d(TAG, "YOUR DEAL");
                 eventText.setText("You are dealer! Draw a card.");
                 setDrawClickable(true);
             }
         }
+        // YOUR GUESS
         if(this.game.getState().equals(CatchTheDealerState.GUESS1)){
             if(turn.getId().equals(user_id)){
                 Log.d(TAG, "YOUR TURN");
@@ -371,8 +388,14 @@ public class CatchTheDealerScreen extends Fragment {
             this.game.setState(CatchTheDealerState.GUESS2);
         }
         else if(compare==0 && guessNum==1) {
-            Log.d(TAG, " Got it! 3 to" + dealer.getName());
-            eventText.setText(" Got it! 3 to" + dealer.getName());
+            Log.d(TAG, " Got it! 3 to " + dealer.getName());
+            //eventText.setText(" Got it! 3 to " + dealer.getName());
+            Context context = getActivity().getApplicationContext();
+            CharSequence text = "Got it! 3 to " + dealer.getName();
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
             this.game.incrementCard(card);
             this.game.resetStreak();
             this.game.nextTurn();
@@ -380,7 +403,12 @@ public class CatchTheDealerScreen extends Fragment {
         }
         else if(compare==0 && guessNum==2){
             Log.d(TAG, " Got it! 1 to" + dealer.getName());
-            eventText.setText( " Got it! 1 to" + dealer.getName());
+            //eventText.setText( " Got it! 1 to" + dealer.getName());
+            Context context = getActivity().getApplicationContext();
+            CharSequence text = "Got it! 1 to " + dealer.getName();
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
             this.game.incrementCard(card);
             this.game.nextTurn();
             setCardsClickable(false);
@@ -390,7 +418,12 @@ public class CatchTheDealerScreen extends Fragment {
             this.game.nextTurn();
             this.game.incrementStreak();
             Log.d(TAG, "Wrong! Diff is " + this.game.getDeck().difference(card.charAt(0), guess));
-            eventText.setText("Wrong! Diff is " + this.game.getDeck().difference(card.charAt(0), guess));
+            //eventText.setText("Wrong! Diff is " + this.game.getDeck().difference(card.charAt(0), guess));
+            Context context = getActivity().getApplicationContext();
+            CharSequence text = "Wrong! Difference is " + this.game.getDeck().difference(card.charAt(0), guess);
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
             setCardsClickable(false);
         }
 

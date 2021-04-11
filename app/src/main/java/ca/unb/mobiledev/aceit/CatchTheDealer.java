@@ -34,6 +34,7 @@ public class CatchTheDealer implements Game {
     private GameStatus status;
     private CatchTheDealerState state;
     private String cardDrawn;
+    private GameType type=GameType.CATCH_THE_DEALER;
 
 
 
@@ -152,8 +153,16 @@ public class CatchTheDealer implements Game {
         this.streak=streak;
     }
 
+    public GameType getGameType() {
+        return this.type;
+    }
+
     public GameStatus getStatus() {
         return this.status;
+    }
+
+    public void setStatus(GameStatus status) {
+        this.status=status;
     }
 
     public CatchTheDealerState getState() {
