@@ -96,13 +96,15 @@ public class CatchTheDealerLobby extends Fragment {
             @Override
             public void onClick(View view) {
                 CatchTheDealerLobbyDirections.ActionStartToCatchTheDealer actionCatch = CatchTheDealerLobbyDirections.actionStartToCatchTheDealer(id);
-
+                // TODO: Add action for other game types
                 //action.setId("1234");
                 Log.d(TAG, "GT"+gameType);
                 if(gameType==GameType.CATCH_THE_DEALER) {
                     NavHostFragment.findNavController(CatchTheDealerLobby.this)
                             .navigate(actionCatch);
                 }
+
+                // TODO: Repeat conditional for other game types.
             }
         });
     }
