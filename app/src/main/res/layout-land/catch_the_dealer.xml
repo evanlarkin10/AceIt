@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/higher_button" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/drawCard"
         android:layout_width="76dp"
         android:layout_height="87dp"
         android:layout_marginEnd="16dp"
@@ -68,7 +68,7 @@
         android:layout_marginBottom="15dp"
         android:text="Draw"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/drawCard"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TableLayout
@@ -87,36 +87,36 @@
 
             <ImageView
                 android:id="@+id/cardImgAD"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="0"
                 app:srcCompat="@drawable/ad" />
 
             <ImageView
                 android:id="@+id/cardImg2D"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="1"
                 app:srcCompat="@drawable/d2" />
 
             <ImageView
                 android:id="@+id/cardImg3D"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="2"
                 app:srcCompat="@drawable/d3" />
 
             <ImageView
                 android:id="@+id/cardImg4D"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="3"
                 app:srcCompat="@drawable/d4" />
 
             <ImageView
                 android:id="@+id/cardImg5D"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="4"
                 app:srcCompat="@drawable/d5" />
 
@@ -164,36 +164,36 @@
 
             <ImageView
                 android:id="@+id/cardImg6D"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="0"
                 app:srcCompat="@drawable/d6" />
 
             <ImageView
                 android:id="@+id/cardImg7D"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="1"
                 app:srcCompat="@drawable/d7" />
 
             <ImageView
                 android:id="@+id/cardImg8D"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="2"
                 app:srcCompat="@drawable/d8" />
 
             <ImageView
                 android:id="@+id/cardImg9D"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="3"
                 app:srcCompat="@drawable/d9" />
 
             <ImageView
                 android:id="@+id/cardImg10D"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="4"
                 app:srcCompat="@drawable/d10" />
 
@@ -244,22 +244,22 @@
 
             <ImageView
                 android:id="@+id/cardImgJD"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="1"
                 app:srcCompat="@drawable/dj" />
 
             <ImageView
                 android:id="@+id/cardImgQD"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="2"
                 app:srcCompat="@drawable/dq" />
 
             <ImageView
                 android:id="@+id/cardImgKD"
-                android:layout_width="55dp"
-                android:layout_height="84dp"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
                 android:layout_column="3"
                 app:srcCompat="@drawable/dk" />
 

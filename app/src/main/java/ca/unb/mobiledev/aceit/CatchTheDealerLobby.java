@@ -1,5 +1,6 @@
 package ca.unb.mobiledev.aceit;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,7 +28,8 @@ public class CatchTheDealerLobby extends Fragment {
     private String TAG ="CATCH_THE_DEALER_LOBBY";
     private Button startBtn;
     private TextView countText;
-
+    private TextView gameCodeText;
+    private GameType gameType = GameType.CATCH_THE_DEALER;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -40,16 +42,14 @@ public class CatchTheDealerLobby extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // GAME SETUP
+        CatchTheDealerScreenArgs args = CatchTheDealerScreenArgs.fromBundle(getArguments());
+        String id = args.getId();
+
+        //DB
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
-        String id =  java.util.UUID.randomUUID().toString().split("-")[0];
-        User host = new User("1","Evan");
-        CatchTheDealer catchTheDealer = new CatchTheDealer(id, host);
-        myRef.child(id).setValue(catchTheDealer);
-
         // UI ELEMENTS
-        MyAdapter myAdapter = new MyAdapter(catchTheDealer.getUsers());
+        MyAdapter myAdapter = new MyAdapter(new ArrayList<>());
         RecyclerView playerListView = view.findViewById(R.id.players_list);
         playerListView.setLayoutManager(new LinearLayoutManager(getContext()));
         playerListView.setAdapter(myAdapter);
@@ -59,21 +59,19 @@ public class CatchTheDealerLobby extends Fragment {
         startBtn.setClickable(false);
 
         countText = getActivity().findViewById(R.id.playersCountText);
-
-
+        gameCodeText = getActivity().findViewById(R.id.game_code_text);
+        gameCodeText.setText("Game Code: " + id);
 
         // LOBBY LISTENER
 
         ValueEventListener gameListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "LISTENED");
+
                 CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
+
                 ArrayList<User> users = game.getUsers();
-                for(User user:users){
-                    Log.d(TAG, "NAME:" + user.getName());
-                }
-                setLobbyState(users.size());
+                setLobbyState(users.size(), game);
                 MyAdapter myAdapter = new MyAdapter(users);
                 playerListView.setAdapter(myAdapter);
             }
@@ -97,33 +95,31 @@ public class CatchTheDealerLobby extends Fragment {
         view.findViewById(R.id.start_game_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CatchTheDealerLobbyDirections.ActionStartToCatchTheDealer action = CatchTheDealerLobbyDirections.actionStartToCatchTheDealer(id);
+                CatchTheDealerLobbyDirections.ActionStartToCatchTheDealer actionCatch = CatchTheDealerLobbyDirections.actionStartToCatchTheDealer(id);
 
                 //action.setId("1234");
-
-                NavHostFragment.findNavController(CatchTheDealerLobby.this)
-                        .navigate(action);
+                Log.d(TAG, "GT"+gameType);
+                if(gameType==GameType.CATCH_THE_DEALER) {
+                    NavHostFragment.findNavController(CatchTheDealerLobby.this)
+                            .navigate(actionCatch);
+                }
             }
         });
     }
 
-    private void setLobbyState(int count){
-        Log.d(TAG, "Testing" + count);
-
-
-         this.countText.setText(count+"/10");
-
-
-        if(count>2){
-            this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.green));
-            this.startBtn.setClickable(true);
+    private void setLobbyState(int count, CatchTheDealer game){
+        gameType = game.getGameType();
+        if(game.getStatus().equals(GameStatus.WAITING)){
+            this.countText.setText(count+"/10");
+            if(count>2){
+                this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.green));
+                this.startBtn.setClickable(true);
+            }
+            else{
+                this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
+                this.startBtn.setClickable(false);
+            }
         }
-        else{
-            this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
-            this.startBtn.setClickable(false);
-        }
-
-
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -151,7 +147,6 @@ public class CatchTheDealerLobby extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            Log.d(TAG, "NAMEBIND:" + users.get(position).getName());
             final User user = users.get(position);
             holder.mTextView.setText(user.getName());
         }

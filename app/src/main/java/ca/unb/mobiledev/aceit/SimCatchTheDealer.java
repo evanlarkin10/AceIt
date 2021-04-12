@@ -20,38 +20,40 @@ public class SimCatchTheDealer {
     }
 
     public void round(String card, char guess, char secondGuess){
+        User turn = game.getUsers().get(game.getTurn());
+        User dealer =game.getUsers().get(game.getDealer());
         Log.d(TAG, "Next Round");
         Log.d(TAG, "Drawn Card" + card);
-        Log.d(TAG, this.game.getTurnUser().getName() + " guesses " + guess);
+        Log.d(TAG, turn.getName() + " guesses " + guess);
         int compare = this.game.getDeck().compare(guess, card.charAt(0));
         if(compare>0){
-            Log.d(TAG, " Card is higher than " + guess);
-            Log.d(TAG, this.game.getTurnUser().getName() + " guesses second" + secondGuess);
+            Log.d(TAG, "Card is higher than " + guess);
+            Log.d(TAG, turn.getName() + " guesses second" + secondGuess);
             compare = this.game.getDeck().compare(secondGuess, card.charAt(0));
             if(compare!=0){
-                Log.d(TAG, "Wrong! Drink diff " + this.game.getDeck().difference(card.charAt(0), secondGuess));
+                Log.d(TAG, "Wrong! Diff is " + this.game.getDeck().difference(card.charAt(0), secondGuess));
                 this.game.incrementStreak();
             }
             else {
-                Log.d(TAG, " Got it! 1 Drinks to" + this.game.getDealerUser().getName());
+                Log.d(TAG, " Got it! 1 to" + dealer.getName());
                 this.game.resetStreak();
             }
         }
         else if(compare<0) {
-            Log.d(TAG, " Card is lower than " + guess);
-            Log.d(TAG, this.game.getTurnUser().getName() + " guesses second" + secondGuess);
+            Log.d(TAG, "Card is lower than " + guess);
+            Log.d(TAG, turn.getName() + " guesses second" + secondGuess);
             compare = this.game.getDeck().compare(secondGuess, card.charAt(0));
             if(compare!=0){
-                Log.d(TAG, "Wrong! Drink diff " + this.game.getDeck().difference(card.charAt(0), secondGuess));
+                Log.d(TAG, "Wrong! Diff is " + this.game.getDeck().difference(card.charAt(0), secondGuess));
                 this.game.incrementStreak();
             }
             else {
-                Log.d(TAG, " Got it! 1 Drinks to" + this.game.getDealerUser().getName());
+                Log.d(TAG, " Got it! 1 to" + dealer.getName());
                 this.game.resetStreak();
             }
         }
         else {
-            Log.d(TAG, " Got it! 3 Drinks to" + this.game.getDealerUser().getName());
+            Log.d(TAG, " Got it! 3 to" + dealer.getName());
             this.game.resetStreak();
         }
         this.game.incrementCard(card);
