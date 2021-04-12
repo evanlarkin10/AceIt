@@ -27,7 +27,7 @@ public class Bet{
     }
 
     //Adding suit and bet value to a Bet
-    public placeBet(int bet, String suit)
+    public void placeBet(int bet, String suit)
     {
         betPlaced = bet;
         this.suit = suit;
