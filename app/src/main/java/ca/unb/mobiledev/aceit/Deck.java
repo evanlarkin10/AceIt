@@ -62,6 +62,7 @@ public class Deck implements Serializable {
         String card = this.cards.get(position);
         this.cards.remove(position);
         this.drawn=this.drawn+1;
+        this.remaining=this.remaining-1;
         return card;
     }
 

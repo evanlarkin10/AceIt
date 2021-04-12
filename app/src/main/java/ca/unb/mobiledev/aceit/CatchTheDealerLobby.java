@@ -111,17 +111,19 @@ public class CatchTheDealerLobby extends Fragment {
 
     private void setLobbyState(int count, CatchTheDealer game){
         gameType = game.getGameType();
-        if(game.getStatus().equals(GameStatus.WAITING)){
-            this.countText.setText(count+"/10");
-            if(count>2){
-                this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.green));
-                this.startBtn.setClickable(true);
-            }
-            else{
-                this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
-                this.startBtn.setClickable(false);
+        try {
+            if (game.getStatus().equals(GameStatus.WAITING)) {
+                this.countText.setText(count + "/10");
+                if (count > 2) {
+                    this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.green));
+                    this.startBtn.setClickable(true);
+                } else {
+                    this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
+                    this.startBtn.setClickable(false);
+                }
             }
         }
+        catch(Exception e){ }
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {

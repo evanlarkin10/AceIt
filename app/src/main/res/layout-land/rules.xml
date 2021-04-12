@@ -51,8 +51,8 @@
 
 
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="518dp"
+        android:layout_width="414dp"
+        android:layout_height="241dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="10dp"
@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-        app:layout_constraintVertical_bias="0.177">
+        app:layout_constraintVertical_bias="0.089">
 
         <FrameLayout
             android:id="@+id/simpleFrameLayout"

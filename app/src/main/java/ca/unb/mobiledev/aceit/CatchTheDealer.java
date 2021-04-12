@@ -145,6 +145,9 @@ public class CatchTheDealer implements Game {
     public void nextTurn(){
 
         int turnIndex = (this.turn+1) % this.users.size();
+        if(turnIndex==this.dealer){
+            turnIndex = (this.turn+1) % this.users.size();
+        }
         this.turn=turnIndex;
     }
 
