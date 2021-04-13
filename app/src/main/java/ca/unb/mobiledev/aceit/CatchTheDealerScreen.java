@@ -332,6 +332,7 @@ public class CatchTheDealerScreen extends Fragment {
         Log.d(TAG, "Equal"+this.game.getState().equals(CatchTheDealerState.GUESS1));
         Log.d(TAG, "TurnID"+turn.getId() + " " +user_id);
         Log.d(TAG, "Equal"+turn.getId().equals(user_id));
+        Log.d(TAG, "Equal"+turn.getId().equals(user_id));
 
         // Game over
         if(this.game.getStatus().equals(GameStatus.COMPLETED)){
