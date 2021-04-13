@@ -18,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -105,9 +107,27 @@ public class HorseRaceScreen extends Fragment {
         user_id = settings.getString("uid", "id");
         user_name = settings.getString("name", "Enter Name");
 
-        //Datebase
+        //Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
+        // Set game to started
+         myRef.child(id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        DataSnapshot dataSnapshot = task.getResult();
+                        HorseRace game =  dataSnapshot.getValue(HorseRace.class);
+                        game.setStatus(GameStatus.STARTED);
+                        myRef.child(id).setValue(game);
+                    }
+                }
+            });
+
+
+
         ValueEventListener gameListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -138,7 +158,7 @@ public class HorseRaceScreen extends Fragment {
         betSuit = view.findViewById(R.id.betsuit_textview);
         betSuit.setText("spades");
         nextCard = view.findViewById(R.id.next_card);
-        nextCard.setEnabled(true);
+        nextCard.setEnabled(false);
         increaseBet = view.findViewById(R.id.higher_bet);
         increaseBet.setOnClickListener(new View.OnClickListener()
         {
@@ -207,7 +227,8 @@ public class HorseRaceScreen extends Fragment {
             public void onClick(View v) {
                 game.addBet(new User(user_id,user_name), betCount, suit);
                 updateDB();
-                confirmButton.setEnabled(false);
+                Log.d(TAG, "SET CONFIRM DISABLED");
+                setBettingUI(false);
             }
         });
         nextCard = view.findViewById(R.id.next_card);
@@ -248,24 +269,8 @@ public class HorseRaceScreen extends Fragment {
         }
 
 
-        if(!game.isStarted()) { //If game is still in betting phase enable all betting buttons
-            increaseBet.setEnabled(true);
-            decreaseBet.setEnabled(true);
-            confirmButton.setEnabled(true);
-            spadeButton.setEnabled(true);
-            heartButton.setEnabled(true);
-            clubButton.setEnabled(true);
-            diamondButton.setEnabled(true);
-        }
-        else {//If game has started, disable betting buttons
-            increaseBet.setEnabled(false);
-            decreaseBet.setEnabled(false);
-            confirmButton.setEnabled(false);
-            spadeButton.setEnabled(false);
-            heartButton.setEnabled(false);
-            clubButton.setEnabled(false);
-            diamondButton.setEnabled(false);
-
+        if(game.isStarted()) { //If game is still in betting phase enable all betting buttons
+            nextCard.setEnabled(true);
         }
 
 
@@ -856,5 +861,14 @@ public class HorseRaceScreen extends Fragment {
         toast.show();
         game.setStatus(GameStatus.COMPLETED);
         //updateDB();
+    }
+    public void setBettingUI(boolean status){
+        increaseBet.setEnabled(status);
+        decreaseBet.setEnabled(status);
+        confirmButton.setEnabled(status);
+        spadeButton.setEnabled(status);
+        heartButton.setEnabled(status);
+        clubButton.setEnabled(status);
+        diamondButton.setEnabled(status);
     }
 }
