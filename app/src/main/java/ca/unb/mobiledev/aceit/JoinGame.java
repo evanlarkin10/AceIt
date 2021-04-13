@@ -62,8 +62,14 @@ public class JoinGame extends Fragment {
                         else {
                             Log.d("firebase", String.valueOf(task.getResult().getValue()));
                             DataSnapshot dataSnapshot = task.getResult();
-                            CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
-                            Log.d("GAMEDEETS", game.toString());
+                            Game game =  dataSnapshot.getValue(CatchTheDealer.class);
+                            Log.d("GAMET", ""+game.getGameType());
+                            if(game.getGameType()==GameType.HORSE_RACE){
+                                game =  dataSnapshot.getValue(HorseRace.class);
+                            }
+                            else if(game.getGameType()==GameType.CROSS_THE_BRIDGE){
+                                //game =  dataSnapshot.getValue(CrossTheBridge.class);
+                            }
                             SharedPreferences settings = getActivity().getApplicationContext().getSharedPreferences("NAME", 0);
                             String userName = settings.getString("name", "username");
                             String uid = settings.getString("uid", "id");
