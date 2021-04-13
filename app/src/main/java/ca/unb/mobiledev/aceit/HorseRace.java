@@ -7,20 +7,25 @@ enum HorseRaceState{
     RACING,
 }
 
-public class HorseRace {
+public class HorseRace implements Game {
     private String id;
     private ArrayList<User> users;
     private int spadeCount;
     private int heartCount;
     private int clubCount;
     private int diamondCount;
-    private int raceLength; //The amount of side cards
-    private boolean betFinished; //default to not finished betting
+    private int raceLength = 5; //The amount of side cards
     private GameStatus status;
     private HorseRaceState state;
-    private String turnedCardSuit;
-    private String sideCardSuit;
-    ArrayList<Bet> userList = new ArrayList<Bet>(); // this will have to be changed
+    private String sideCard1Suit;
+    private String sideCard2Suit;
+    private String sideCard3Suit;
+    private String sideCard4Suit;
+    private String sideCard5Suit;
+    public Deck deck;
+    private GameType type = GameType.HORSE_RACE;
+    ArrayList<Bet> userList = new ArrayList<>(); // this will have to be changed
+    ArrayList<String> cardsDrawn = new ArrayList<>();
 
 
     public HorseRace() {  } // Default constructor required for calls to DataSnapshot.getValue(Game.class)
@@ -28,21 +33,37 @@ public class HorseRace {
     public HorseRace(String id, User host)
     {
         this.id = id;
-        this.users = new ArrayList<User>();
+        this.users = new ArrayList<>();
         this.users.add(host);
         this.spadeCount = 0;
         this.heartCount = 0;
         this.clubCount = 0;
         this.diamondCount = 0;
         this.raceLength = 5; //play five cards on the side
-        this.betFinished = false;
         this.status = GameStatus.WAITING;
         this.state = HorseRaceState.BETTING;
+        this.sideCard1Suit = "";
+        this.sideCard2Suit = "";
+        this.sideCard3Suit = "";
+        this.sideCard4Suit = "";
+        this.sideCard5Suit = "";
+        this.deck = new Deck();
     }
 
+    public int getSpadeCount() { return this.spadeCount; }
+    public void incrementSpade() { this.spadeCount++; }
+    public int getHeartCount() { return this.heartCount; }
+    public void incrementHeart() { this.heartCount++ ; }
+    public int getClubCount() { return this.clubCount; }
+    public void incrementClub() { this.clubCount++; }
+    public int getDiamondCount() { return this.diamondCount; }
+    public void incrementDiamond() { this.diamondCount++; }
+
+    public GameStatus getStatus() { return status; }
+    public HorseRaceState getState() { return state; }
 
 
-        //First stage of the game:
+    //First stage of the game:
         //Set up the three users that will be playing
         User dav = new User("69", "Dav");
         User ev = new User("420", "Ev");
@@ -52,6 +73,26 @@ public class HorseRace {
         Bet davsBet = new Bet(dav, 3, "Diamond");
         Bet evsBet = new Bet(ev, 2, "Heart");
         Bet barbsBet = new Bet(barb, 4, "Spade");
+
+    @Override
+    public ArrayList<User> getUsers() {
+        return null;
+    }
+
+    @Override
+    public void addUser(User user) {
+
+    }
+
+    @Override
+    public boolean isStarted() {
+        return false;
+    }
+
+    @Override
+    public void start() {
+
+    }
 
 //        userList.add(davsBet);
 //        userList.add(evsBet);
