@@ -271,7 +271,7 @@ public class HorseRaceScreen extends Fragment {
 
 
         //on racing state
-        if(this.game.getStatus().equals("RACING"))
+        if(this.game.getState().equals(HorseRaceState.RACING))
         {
             nextCard.setEnabled(true);
         }
@@ -855,6 +855,6 @@ public class HorseRaceScreen extends Fragment {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
         game.setStatus(GameStatus.COMPLETED);
-        updateDB();
+        //updateDB();
     }
 }
