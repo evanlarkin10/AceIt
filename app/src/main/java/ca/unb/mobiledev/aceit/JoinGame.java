@@ -1,6 +1,7 @@
 
 package ca.unb.mobiledev.aceit;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -60,20 +62,51 @@ public class JoinGame extends Fragment {
                         else {
                             Log.d("firebase", String.valueOf(task.getResult().getValue()));
                             DataSnapshot dataSnapshot = task.getResult();
-                            CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
-                            Log.d("GAMEDEETS", game.toString());
+                            Game game =  dataSnapshot.getValue(CatchTheDealer.class);
+                            Log.d("GAMET", ""+game.getGameType());
+                            if(game.getGameType()==GameType.HORSE_RACE){
+                                game =  dataSnapshot.getValue(HorseRace.class);
+                            }
+                            else if(game.getGameType()==GameType.CROSS_THE_BRIDGE){
+                                //game =  dataSnapshot.getValue(CrossTheBridge.class);
+                            }
                             SharedPreferences settings = getActivity().getApplicationContext().getSharedPreferences("NAME", 0);
                             String userName = settings.getString("name", "username");
                             String uid = settings.getString("uid", "id");
                             User newUser = new User(uid,userName);
-                            game.addUser(newUser);
-                            myRef.child(id).setValue(game);
+                            if(game.getUsers().size()>=10){
+                                Context context = getActivity().getApplicationContext();
+                                CharSequence text = "Lobby Full";
+                                int duration = Toast.LENGTH_LONG;
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                            }
+                            else if(game.getStatus()==GameStatus.STARTED){
+                                Context context = getActivity().getApplicationContext();
+                                CharSequence text = "Game has already started";
+                                int duration = Toast.LENGTH_LONG;
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                            }
+                            else if(game.getStatus()==GameStatus.COMPLETED){
+                                Context context = getActivity().getApplicationContext();
+                                CharSequence text = "Game has already finished";
+                                int duration = Toast.LENGTH_LONG;
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                            }
+                            else{
+                                game.addUser(newUser);
+                                myRef.child(id).setValue(game);
+                                JoinGameDirections.ActionJoinToCatchTheDealerLobby action = JoinGameDirections.actionJoinToCatchTheDealerLobby(id);
+                                NavHostFragment.findNavController(JoinGame.this)
+                                        .navigate(action);
+                            }
+
                         }
                     }
                 });
-                JoinGameDirections.ActionJoinToCatchTheDealerLobby action = JoinGameDirections.actionJoinToCatchTheDealerLobby(id);
-                NavHostFragment.findNavController(JoinGame.this)
-                        .navigate(action);
+
             }
         });
     }

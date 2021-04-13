@@ -17,8 +17,21 @@
     <string name="horse_race">Horse Race</string>
     <string name="catch_the_dealer">Catch the dealer</string>
     <string name="cross_the_bridge">Cross the bridge</string>
+    <string name="horse_race_rules">This game is intended to simulate the excitement of cheering for a horse in a race, or in this case cheering for a card suit. The game will start with a betting round. All players will select a suit, and a number of drinks they are willing to bet.
+    If the suit you select wins the race, you give out your selected number of drinks to any player in the game. If your suit does not win the race, you must drink the number of drinks you bet. The track will be setup by having all aces along the bottom with a row of cards face down along the left until the finish line.
+        The race will proceed by the host drawing a card from the deck. The suit of the drawn card determines which ace moves forward one level. When the ace reaches a new level of the track, the card on the left will be flipped. The ace with the matching suit of the flipped card will go backwards one level. This will continue until
+        an ace reaches the finish line, indicating the winning suit and the end of the race.
+    </string>
+    <string name="catch_the_dealer_rules">This game is a simple guessing game, with the odds increasing as the game proceeds in the favour of the player that is guessing. The dealer will draw a card. The player in turn will be able to guess a card number by pressing one of the 13 on the screen. If they are correct, the dealer must drink 3 sips and their streak is reset. If they
+        are incorrect, they are told whether the card is higher or lower. They have one more guess to get it right. If they are correct on the second try, the dealer must drink 1 sip. If they are incorrect both times, they must drink 1 sip. The turn proceeds to the next player. The dealer must deal for three consecutive failures, at which point the dealer becomes the next player.
+        This process is carried out until the deck is completed.
+    </string>
+    <string name="ride_the_bus_rules">This game is carried out in 4 stages and involves guessing with increasing difficulty. Everyone will get a turn at each stage. The first stage is guessing the color of the card, red or black. The second stage is guessing whether the second card is higher or lower than your first. The identical number does not count. The third round is guessing whether your card will be in between or outside your previous two cards.
+        The fourth round will be guessing the suit of the card to be drawn.
+    </string>
     <string name="rules">Rules</string>
     <string name="previous">Previous</string>
+    <string name="Ride_the_bus">Ride The bus</string>
 
     <string name="hello_first_fragment">Ace It</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

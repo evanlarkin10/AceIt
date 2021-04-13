@@ -46,10 +46,6 @@
         <action
             android:id="@+id/action_select_to_catch_the_dealer_lobby"
             app:destination="@id/CatchTheDealerLobby" />
-        <action
-            android:id="@+id/action_SelectGame_to_rideTheBusScreen"
-            app:destination="@id/rideTheBusScreen" />
-
 
     </fragment>
     <fragment
@@ -62,9 +58,6 @@
         <action
             android:id="@+id/action_join_to_catch_the_dealer_lobby"
             app:destination="@id/CatchTheDealerLobby" />
-        <action
-            android:id="@+id/action_JoinGame_to_rideTheBusScreen"
-            app:destination="@id/rideTheBusScreen" />
     </fragment>
     <fragment
         android:id="@+id/RulesScreen"
@@ -80,33 +73,6 @@
         android:label="CatchTheDealerScreen" >
         <action
             android:id="@+id/action_catch_the_dealer_home"
-            app:destination="@id/HomeScreen" />
-        <argument
-            android:name="id"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/rideTheBusScreen"
-        android:name="ca.unb.mobiledev.aceit.RideTheBusScreen"
-        android:label="fragment_ride_the_bus_screen"
-        tools:layout="@layout/fragment_ride_the_bus_screen" >
-        <argument
-            android:name="id"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_rideTheBusScreen_to_rideTheBusGame"
-            app:destination="@id/rideTheBusGame" />
-        <action
-            android:id="@+id/action_rideTheBusScreen_to_HomeScreen"
-            app:destination="@id/HomeScreen" />
-    </fragment>
-    <fragment
-        android:id="@+id/rideTheBusGame"
-        android:name="ca.unb.mobiledev.aceit.RideTheBusGame"
-        android:label="fragment_ride_the_bus_game"
-        tools:layout="@layout/fragment_ride_the_bus_game" >
-        <action
-            android:id="@+id/action_rideTheBusGame_to_HomeScreen"
             app:destination="@id/HomeScreen" />
         <argument
             android:name="id"

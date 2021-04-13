@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/heart_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:text="Heart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spade_button" />
+
+    <Button
+        android:id="@+id/spade_button"
+        android:layout_width="86dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="112dp"
+        android:text="Spade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/diamond_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="112dp"
+        android:text="Diamond"
+        app:layout_constraintStart_toEndOf="@+id/spade_button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/club_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="8dp"
+        android:text="Club"
+        app:layout_constraintStart_toEndOf="@+id/heart_button"
+        app:layout_constraintTop_toBottomOf="@+id/diamond_button" />
+
+    <Button
+        android:id="@+id/higher_bet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="17dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:text="+"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horse_race_title" />
+
+    <Button
+        android:id="@+id/lower_bet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="17dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:text="-"
+        app:layout_constraintStart_toEndOf="@+id/higher_bet"
+        app:layout_constraintTop_toBottomOf="@+id/horse_race_title" />
+
+    <TextView
+        android:id="@+id/horse_race_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Horse Race"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/yourBet_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="190dp"
+        android:text="You bet:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horse_race_title" />
+
+    <TextView
+        android:id="@+id/betValue_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="190dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/yourBet_textview"
+        app:layout_constraintTop_toBottomOf="@+id/horse_race_title" />
+
+    <TextView
+        android:id="@+id/on_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="190dp"
+        android:text="on"
+        app:layout_constraintStart_toEndOf="@+id/betValue_textview"
+        app:layout_constraintTop_toBottomOf="@+id/horse_race_title" />
+
+    <TextView
+        android:id="@+id/betsuit_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="190dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/on_textview"
+        app:layout_constraintTop_toBottomOf="@+id/horse_race_title" />
+
+    <Button
+        android:id="@+id/next_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="Draw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmButton" />
+
+    <TableLayout
+        android:id="@+id/ctd_table_layout"
+        android:layout_width="404dp"
+        android:layout_height="520dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="80dp"
+        android:stretchColumns="*"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49">
+
+        <TableRow
+            android:layout_width="15dp"
+            android:layout_height="15dp">
+
+            <ImageView
+                android:id="@+id/side5"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="0"
+                app:srcCompat="@drawable/back" />
+
+            <ImageView
+                android:id="@+id/spade_position5"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="1"
+                app:srcCompat="@drawable/d2" />
+
+            <ImageView
+                android:id="@+id/heart_position5"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/club_position5"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/diamond_position5"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="15dp"
+            android:layout_height="15dp">
+
+            <ImageView
+                android:id="@+id/side4"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="0"
+                app:srcCompat="@drawable/back" />
+
+            <ImageView
+                android:id="@+id/spade_position4"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="1"
+                app:srcCompat="@drawable/d2" />
+
+            <ImageView
+                android:id="@+id/heart_position4"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/club_position4"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/diamond_position4"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="15dp"
+            android:layout_height="15dp">
+
+            <ImageView
+                android:id="@+id/side3"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="0"
+                app:srcCompat="@drawable/back" />
+
+            <ImageView
+                android:id="@+id/spade_position3"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="1"
+                app:srcCompat="@drawable/d2" />
+
+            <ImageView
+                android:id="@+id/heart_position3"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/club_position3"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/diamond_position3"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="15dp"
+            android:layout_height="15dp">
+
+            <ImageView
+                android:id="@+id/side2"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="0"
+                app:srcCompat="@drawable/back" />
+
+            <ImageView
+                android:id="@+id/spade_position2"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="1"
+                app:srcCompat="@drawable/d2" />
+
+            <ImageView
+                android:id="@+id/heart_position2"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/club_position2"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/diamond_position2"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="15dp"
+            android:layout_height="15dp">
+
+            <ImageView
+                android:id="@+id/side1"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="0"
+                app:srcCompat="@drawable/back" />
+
+            <ImageView
+                android:id="@+id/spade_position1"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="1"
+                app:srcCompat="@drawable/d2" />
+
+            <ImageView
+                android:id="@+id/heart_position1"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/club_position1"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+
+            <ImageView
+                android:id="@+id/diamond_position1"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/d3" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="15dp"
+            android:layout_height="15dp">
+
+            <ImageView
+                android:id="@+id/spade_mover"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="1"
+                app:srcCompat="@drawable/as" />
+
+            <ImageView
+                android:id="@+id/heart_mover"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/ah" />
+
+            <ImageView
+                android:id="@+id/club_mover"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/ac" />
+
+            <ImageView
+                android:id="@+id/diamond_mover"
+                android:layout_width="44dp"
+                android:layout_height="69dp"
+                android:layout_column="2"
+                app:srcCompat="@drawable/ad" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:text="Submit Bet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourBet_textview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

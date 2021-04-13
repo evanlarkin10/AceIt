@@ -68,7 +68,8 @@ public class CatchTheDealerLobby extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
+                Game game =  dataSnapshot.getValue(CatchTheDealer.class);
+                Log.d("GAMETYPE", ""+game.getGameType());
 
                 ArrayList<User> users = game.getUsers();
                 setLobbyState(users.size(), game);
@@ -96,30 +97,39 @@ public class CatchTheDealerLobby extends Fragment {
             @Override
             public void onClick(View view) {
                 CatchTheDealerLobbyDirections.ActionStartToCatchTheDealer actionCatch = CatchTheDealerLobbyDirections.actionStartToCatchTheDealer(id);
-
+                CatchTheDealerLobbyDirections.ActionStartToHorserace actionHorse = CatchTheDealerLobbyDirections.actionStartToHorserace(id);
                 //action.setId("1234");
                 Log.d(TAG, "GT"+gameType);
+                myRef.child(id).removeEventListener(gameListener);
                 if(gameType==GameType.CATCH_THE_DEALER) {
                     NavHostFragment.findNavController(CatchTheDealerLobby.this)
                             .navigate(actionCatch);
                 }
+                if(gameType==GameType.HORSE_RACE) {
+                    NavHostFragment.findNavController(CatchTheDealerLobby.this)
+                            .navigate(actionHorse);
+                }
+
+                // TODO: Repeat conditional for other game types.
             }
         });
     }
 
-    private void setLobbyState(int count, CatchTheDealer game){
+    private void setLobbyState(int count, Game game){
         gameType = game.getGameType();
-        if(game.getStatus().equals(GameStatus.WAITING)){
-            this.countText.setText(count+"/10");
-            if(count>2){
-                this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.green));
-                this.startBtn.setClickable(true);
-            }
-            else{
-                this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
-                this.startBtn.setClickable(false);
+        try {
+            if (game.getStatus().equals(GameStatus.WAITING)) {
+                this.countText.setText(count + "/10");
+                if (count > 2) {
+                    this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.green));
+                    this.startBtn.setClickable(true);
+                } else {
+                    this.countText.setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
+                    this.startBtn.setClickable(false);
+                }
             }
         }
+        catch(Exception e){ }
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {

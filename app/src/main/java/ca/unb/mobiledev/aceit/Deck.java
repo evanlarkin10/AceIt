@@ -41,10 +41,6 @@ public class Deck implements Serializable {
         this.cards.add("KD");
         this.cards.add("KH");
         this.cards.add("KS");
-        Log.d("DECK", this.cards.size() + "");
-        for(int i =0;i<this.cards.size();i++){
-            Log.d("DECK", i + this.cards.get(i));
-        }
     }
 
     public ArrayList<String> getCards(){return this.cards;}
@@ -62,6 +58,7 @@ public class Deck implements Serializable {
         String card = this.cards.get(position);
         this.cards.remove(position);
         this.drawn=this.drawn+1;
+        this.remaining=this.remaining-1;
         return card;
     }
 

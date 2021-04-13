@@ -7,21 +7,87 @@
     tools:context=".CatchTheDealerLobby">
 
     <TextView
-        android:id="@+id/textview_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_back"
+        android:id="@+id/textView"
+        android:layout_width="63dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="184dp"
+        android:text="@string/rules"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/horseraceRules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horse Race" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/catchTheDealerRules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Catch The Dealer" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/CrossTheBridgeRules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cross The Bridge" />
+    </com.google.android.material.tabs.TabLayout>
+
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="518dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        app:layout_constraintVertical_bias="0.177">
+
+        <FrameLayout
+            android:id="@+id/simpleFrameLayout"
+            android:layout_width="396dp"
+            android:layout_height="530dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout">
+
+        </FrameLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/previous"
+        android:layout_marginBottom="10dp"
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

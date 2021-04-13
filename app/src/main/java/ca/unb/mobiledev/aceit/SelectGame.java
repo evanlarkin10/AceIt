@@ -39,8 +39,21 @@ public class SelectGame extends Fragment {
         view.findViewById(R.id.button_select_horserace).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // GAME SETUP
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference();
+                String id =  java.util.UUID.randomUUID().toString().split("-")[0];
+                SharedPreferences settings = getActivity().getApplicationContext().getSharedPreferences("NAME", 0);
+                String userName = settings.getString("name", "username");
+                String uid = settings.getString("uid", "id");
+                User host = new User(uid,userName);
+                HorseRace race = new HorseRace(id, host);
+                Log.d("CATCH", "Game created id:" + id);
+                myRef.child(id).setValue(race);
+                Log.d("CATCH", "Game created id:" + id);
+                SelectGameDirections.ActionSelectToCatchTheDealerLobby action = SelectGameDirections.actionSelectToCatchTheDealerLobby(id);
                 NavHostFragment.findNavController(SelectGame.this)
-                        .navigate(R.id.action_select_to_home);
+                        .navigate(action);
             }
         });
 

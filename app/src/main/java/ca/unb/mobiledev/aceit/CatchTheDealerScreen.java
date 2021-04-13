@@ -19,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -77,6 +79,21 @@ public class CatchTheDealerScreen extends Fragment {
         //-------------Set up DB Listener
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
+        // Set game to started
+        myRef.child(id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    DataSnapshot dataSnapshot = task.getResult();
+                    CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
+                    game.setStatus(GameStatus.STARTED);
+                    myRef.child(id).setValue(game);
+                }
+            }
+        });
         ValueEventListener gameListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -86,6 +103,7 @@ public class CatchTheDealerScreen extends Fragment {
 
 
                 CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
+                //game.setStatus(GameStatus.STARTED);
                 setGame(game);
                 handleGameStateUpdate();
             }
@@ -235,21 +253,6 @@ public class CatchTheDealerScreen extends Fragment {
         //---------------- End Card Click Handlers
 
 
-
-
-        Log.d(TAG,"VIEW CREATED");
-        /* Simulate this.game
-        User user1 = new User("1", "Evan");
-        User user2 = new User("2", "Dav");
-        User user3 = new User("3", "Barb");
-        CatchTheDealer game = new CatchTheDealer("1234", user1);
-        game.addUser(user2);
-        game.addUser(user3);
-        game.toString();
-        SimCatchTheDealer sim=new SimCatchTheDealer(this.game);
-        sim.run();
-*/
-
     }
 
     private void updateDB(){
@@ -269,17 +272,35 @@ public class CatchTheDealerScreen extends Fragment {
     }
 
     private void handleCardClick(char card){
-        if(this.game.getState()==CatchTheDealerState.GUESS1){
-            Log.d(TAG, "CARD PRESS" + card + " Guess1" + " drawn=" + this.game.getCardDrawn());
-            round(this.game.getCardDrawn(), card, 1);
-            this.game.setState(CatchTheDealerState.GUESS2);
-            updateDB();
+        boolean clickable = true;
+        // Cant select if all four of suit has been drawn
+        switch(card){
+            case 'A': if(this.game.getAceCount()>=4)clickable=false;break;
+            case '2': if(this.game.getTwoCount()>=4)clickable=false;break;
+            case '3': if(this.game.getThreeCount()>=4)clickable=false;break;
+            case '4': if(this.game.getFourCount()>=4)clickable=false;break;
+            case '5': if(this.game.getFiveCount()>=4)clickable=false;break;
+            case '6': if(this.game.getSixCount()>=4)clickable=false;break;
+            case '7': if(this.game.getSevenCount()>=4)clickable=false;break;
+            case '8': if(this.game.getEightCount()>=4)clickable=false;break;
+            case '9': if(this.game.getNineCount()>=4)clickable=false;break;
+            case '1': if(this.game.getTenCount()>=4)clickable=false;break;
+            case 'J': if(this.game.getJackCount()>=4)clickable=false;break;
+            case 'Q': if(this.game.getQueenCount()>=4)clickable=false;break;
+            case 'K': if(this.game.getKingCount()>=4)clickable=false;break;
         }
-        else if(this.game.getState()==CatchTheDealerState.GUESS2){
-            Log.d(TAG, "CARD PRESS" + card + " Guess2");
-            round(this.game.getCardDrawn(), card, 2);
-            this.game.setState(CatchTheDealerState.DRAW);
-            updateDB();
+        if(clickable) {
+            if (this.game.getState() == CatchTheDealerState.GUESS1) {
+                Log.d(TAG, "CARD PRESS" + card + " Guess1" + " drawn=" + this.game.getCardDrawn());
+                round(this.game.getCardDrawn(), card, 1);
+                this.game.setState(CatchTheDealerState.GUESS2);
+                updateDB();
+            } else if (this.game.getState() == CatchTheDealerState.GUESS2) {
+                Log.d(TAG, "CARD PRESS" + card + " Guess2");
+                round(this.game.getCardDrawn(), card, 2);
+                this.game.setState(CatchTheDealerState.DRAW);
+                updateDB();
+            }
         }
 
     }
@@ -320,6 +341,7 @@ public class CatchTheDealerScreen extends Fragment {
 
         // DRAW STATE
         if(this.game.getState().equals(CatchTheDealerState.DRAW)){
+            Log.d("DRAWN:", this.game.getDeck().getDrawn()+"");
             // YOUR DEAL
             if(dealer.getId().equals(user_id)){
                 //IS GAME OVER?
@@ -392,7 +414,7 @@ public class CatchTheDealerScreen extends Fragment {
             //eventText.setText(" Got it! 3 to " + dealer.getName());
             Context context = getActivity().getApplicationContext();
             CharSequence text = "Got it! 3 to " + dealer.getName();
-            int duration = Toast.LENGTH_SHORT;
+            int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
@@ -406,7 +428,7 @@ public class CatchTheDealerScreen extends Fragment {
             //eventText.setText( " Got it! 1 to" + dealer.getName());
             Context context = getActivity().getApplicationContext();
             CharSequence text = "Got it! 1 to " + dealer.getName();
-            int duration = Toast.LENGTH_SHORT;
+            int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
             this.game.incrementCard(card);
@@ -421,7 +443,7 @@ public class CatchTheDealerScreen extends Fragment {
             //eventText.setText("Wrong! Diff is " + this.game.getDeck().difference(card.charAt(0), guess));
             Context context = getActivity().getApplicationContext();
             CharSequence text = "Wrong! Difference is " + this.game.getDeck().difference(card.charAt(0), guess);
-            int duration = Toast.LENGTH_SHORT;
+            int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
             setCardsClickable(false);
