@@ -67,8 +67,26 @@ public class SelectGame extends Fragment {
         view.findViewById(R.id.button_select_crossthebridge).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference();
+                String id =  java.util.UUID.randomUUID().toString().split("-")[0];
+                SharedPreferences settings = getActivity().getApplicationContext().getSharedPreferences("NAME", 0);
+                String userName = settings.getString("name", "username");
+                String uid = settings.getString("uid", "id");
+                User host = new User(uid,userName);
+                //CatchTheDealer catchTheDealer = new CatchTheDealer(id, host);
+                RideTheBus rideTheBus = new RideTheBus(id, host);
+                Log.d("CATCH", "Game created id:" + id);
+                //myRef.child(id).setValue(catchTheDealer);
+                myRef.child(id).setValue(rideTheBus);
+
+               // SelectGameDirections.action_SelectGame_to_rideTheBusLobby action = SelectGameDirections.action_SelectGame_to_rideTheBusLobby(id);
+                //SelectGameDirections.action_SelectGame_to_rideTheBusLobby action
+                //SelectGameDirections.action_SelectGame_to_rideTheBusLobby action = SelectGameDirections.actionSelectToCatchTheDealerLobby()
+                //SelectGameDirections.action_SelectGame_to_rideTheBusScreen action = SelectGameDirections.action_SelectGame_to_rideTheBusScreen(id);
+                SelectGameDirections.ActionSelectGameToRideTheBusScreen action = SelectGameDirections.actionSelectGameToRideTheBusScreen(id);
                 NavHostFragment.findNavController(SelectGame.this)
-                        .navigate(R.id.action_select_to_home);
+                        .navigate(action);
             }
         });
     }
