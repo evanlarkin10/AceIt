@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public interface Game {
 
-    public ArrayList<User> getUsers();
-    public void addUser(User user);
-    public boolean isStarted();
-    public void start();
+    ArrayList<User> getUsers();
+    void addUser(User user);
+    boolean isStarted();
+    void start();
     
 }
