@@ -11,23 +11,23 @@ public class BetList
         // Default constructor required for calls to DataSnapshot.getValue(Game.class)
     }
 
-    public BetList()
+    //public BetList()
 
     public void addBet(Bet bet)
     {
         boolean flag = false;
         for(int i=0; i<betList.size(); i++)
         {
-            if(betList.)
+            //if(betList.)
         }
         betList.add(bet);
     }
 
-    public int getBetValue()
+    //public int getBetValue()
     {
-        return betList.bet.getBetValue();
+        //return betList.bet.getBetValue();
     }
 
-    public String
+
 
 }
