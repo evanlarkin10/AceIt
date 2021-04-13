@@ -91,15 +91,15 @@ public class RideTheBusScreen extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(RideTheBusScreen.this)
-                        .navigate(R.id.action_rideTheBusScreen_to_HomeScreen);
+                        .navigate(R.id.action_rideTheBusScreen2_to_HomeScreen2);
             }
         });
         view.findViewById(R.id.start_game_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //CatchTheDealerLobbyDirections.ActionStartToCatchTheDealer actionCatch = CatchTheDealerLobbyDirections.actionStartToCatchTheDealer(id);
-                RideTheBusScreenDirections.ActionRideTheBusScreenToRideTheBusGame actionCatch = RideTheBusScreenDirections.actionRideTheBusScreenToRideTheBusGame(id);
-
+                //RideTheBusScreenDirections.ActionRideTheBusScreenToRideTheBusGame actionCatch = RideTheBusScreenDirections.actionRideTheBusScreenToRideTheBusGame(id);
+                RideTheBusScreenDirections.ActionRideTheBusScreen2ToRideTheBusGame2 actionCatch = RideTheBusScreenDirections.actionRideTheBusScreen2ToRideTheBusGame2(id);
                 //RideTheBusScreen
 
 

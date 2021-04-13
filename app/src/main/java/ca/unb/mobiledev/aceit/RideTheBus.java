@@ -17,10 +17,10 @@ public class RideTheBus implements Game {
     private int turn=1;
     private int dealer=0;
     private int streak=0;
-    private String card1;
-    private String card2;
-    private String card3;
-    private String card4;
+    private String card1 = "back";
+    private String card2 = "back";
+    private String card3 = "back";
+    private String card4 = "back";
     private int maxPlayers;
     private boolean isStarted;
     public Deck deck;
