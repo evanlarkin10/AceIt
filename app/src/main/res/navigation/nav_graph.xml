@@ -67,6 +67,7 @@
             android:id="@+id/action_rules_to_home"
             app:destination="@id/HomeScreen" />
     </fragment>
+
     <fragment
         android:id="@+id/CatchTheDealerScreen"
         android:name="ca.unb.mobiledev.aceit.CatchTheDealerScreen"
@@ -78,4 +79,13 @@
             android:name="id"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/horseRaceScreen"
+        android:name="ca.unb.mobiledev.aceit.HorseRaceScreen"
+        android:label="HorseRaceScreen" >
+        <action
+            android:id="@+id/action_horseRaceScreen_to_HomeScreen"
+            app:destination="@id/HomeScreen" />
+    </fragment>
+
 </navigation>
