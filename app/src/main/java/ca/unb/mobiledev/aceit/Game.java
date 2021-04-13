@@ -8,5 +8,7 @@ public interface Game {
     void addUser(User user);
     boolean isStarted();
     void start();
+    GameType getGameType();
+    GameStatus getStatus();
     
 }

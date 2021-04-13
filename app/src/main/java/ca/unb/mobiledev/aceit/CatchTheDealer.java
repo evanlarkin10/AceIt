@@ -7,6 +7,7 @@ enum CatchTheDealerState{
     DRAW,
     GUESS1,
     GUESS2,
+    BETTING
 }
 
 public class CatchTheDealer implements Game {
@@ -34,7 +35,7 @@ public class CatchTheDealer implements Game {
     private GameStatus status;
     private CatchTheDealerState state;
     private String cardDrawn;
-    private GameType type=GameType.CATCH_THE_DEALER;
+    private GameType gameType=GameType.CATCH_THE_DEALER;
 
 
 
@@ -157,7 +158,7 @@ public class CatchTheDealer implements Game {
     }
 
     public GameType getGameType() {
-        return this.type;
+        return this.gameType;
     }
 
     public GameStatus getStatus() {

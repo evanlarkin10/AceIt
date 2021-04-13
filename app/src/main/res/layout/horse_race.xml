@@ -357,28 +357,28 @@
                 android:layout_width="44dp"
                 android:layout_height="69dp"
                 android:layout_column="1"
-                app:srcCompat="@drawable/d2" />
+                app:srcCompat="@drawable/as" />
 
             <ImageView
                 android:id="@+id/heart_mover"
                 android:layout_width="44dp"
                 android:layout_height="69dp"
                 android:layout_column="2"
-                app:srcCompat="@drawable/d3" />
+                app:srcCompat="@drawable/ah" />
 
             <ImageView
                 android:id="@+id/club_mover"
                 android:layout_width="44dp"
                 android:layout_height="69dp"
                 android:layout_column="2"
-                app:srcCompat="@drawable/d3" />
+                app:srcCompat="@drawable/ac" />
 
             <ImageView
                 android:id="@+id/diamond_mover"
                 android:layout_width="44dp"
                 android:layout_height="69dp"
                 android:layout_column="2"
-                app:srcCompat="@drawable/d3" />
+                app:srcCompat="@drawable/ad" />
         </TableRow>
 
     </TableLayout>

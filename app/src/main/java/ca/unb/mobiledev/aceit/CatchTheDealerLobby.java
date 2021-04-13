@@ -68,7 +68,8 @@ public class CatchTheDealerLobby extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
+                Game game =  dataSnapshot.getValue(CatchTheDealer.class);
+                Log.d("GAMETYPE", ""+game.getGameType());
 
                 ArrayList<User> users = game.getUsers();
                 setLobbyState(users.size(), game);
@@ -96,12 +97,17 @@ public class CatchTheDealerLobby extends Fragment {
             @Override
             public void onClick(View view) {
                 CatchTheDealerLobbyDirections.ActionStartToCatchTheDealer actionCatch = CatchTheDealerLobbyDirections.actionStartToCatchTheDealer(id);
-                // TODO: Add action for other game types
+                CatchTheDealerLobbyDirections.ActionStartToHorserace actionHorse = CatchTheDealerLobbyDirections.actionStartToHorserace(id);
                 //action.setId("1234");
                 Log.d(TAG, "GT"+gameType);
+                myRef.child(id).removeEventListener(gameListener);
                 if(gameType==GameType.CATCH_THE_DEALER) {
                     NavHostFragment.findNavController(CatchTheDealerLobby.this)
                             .navigate(actionCatch);
+                }
+                if(gameType==GameType.HORSE_RACE) {
+                    NavHostFragment.findNavController(CatchTheDealerLobby.this)
+                            .navigate(actionHorse);
                 }
 
                 // TODO: Repeat conditional for other game types.
@@ -109,7 +115,7 @@ public class CatchTheDealerLobby extends Fragment {
         });
     }
 
-    private void setLobbyState(int count, CatchTheDealer game){
+    private void setLobbyState(int count, Game game){
         gameType = game.getGameType();
         try {
             if (game.getStatus().equals(GameStatus.WAITING)) {

@@ -1,5 +1,6 @@
 package ca.unb.mobiledev.aceit;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,12 +29,13 @@ public class HorseRaceScreen extends Fragment {
     private String TAG = "HORSE_RACE_SCREEN";
     private HorseRace game;
     private String id;
+    private int betCount=0;
+    private String suit="S";
     private TextView horseTitle;
     private TextView yourBet;
     private TextView betValue;
     private TextView on;
     private TextView betSuit;
-    private String user_id = "";
     private Button increaseBet;
     private Button decreaseBet;
     private Button confirmBet;
@@ -40,6 +43,8 @@ public class HorseRaceScreen extends Fragment {
     private Button heartButton;
     private Button clubButton;
     private Button diamondButton;
+    private Button nextCard;
+    private Button confirmButton;
     private ImageView side5;
     private ImageView side4;
     private ImageView side3;
@@ -69,6 +74,8 @@ public class HorseRaceScreen extends Fragment {
     private ImageView diamond3;
     private ImageView diamond4;
     private ImageView diamond5;
+    private String user_name="";
+    private String user_id="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -82,13 +89,21 @@ public class HorseRaceScreen extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //TODO Still need to find out how Ev did this part.
-        //I have checked the build.gradle and it is present there, maybe I have the wrong ID?
+
         HorseRaceScreenArgs args = HorseRaceScreenArgs.fromBundle(getArguments());
         id = args.getId();
 
+
+        side1 = view.findViewById(R.id.side1);
+        side2 = view.findViewById(R.id.side2);
+        side3 = view.findViewById(R.id.side3);
+        side4 = view.findViewById(R.id.side4);
+        side5 = view.findViewById(R.id.side5);
+
+
         SharedPreferences settings = getActivity().getApplicationContext().getSharedPreferences("NAME", 0);
         user_id = settings.getString("uid", "id");
+        user_name = settings.getString("name", "Enter Name");
 
         //Datebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -100,6 +115,7 @@ public class HorseRaceScreen extends Fragment {
                 Log.d(TAG,"Listened");
 
                 HorseRace game = snapshot.getValue(HorseRace.class);
+                //game.setStatus(GameStatus.STARTED);
                 setGame(game);
                 handleGameStateUpdate();
             }
@@ -115,15 +131,21 @@ public class HorseRaceScreen extends Fragment {
         //Setting up buttons, imageviews
         horseTitle = view.findViewById(R.id.horse_race_title);
         yourBet = view.findViewById(R.id.yourBet_textview);
+        yourBet.setText("You Bet");
         betValue = view.findViewById(R.id.betValue_textview);
+        betValue.setText("0");
         on = view.findViewById(R.id.on_textview);
         betSuit = view.findViewById(R.id.betsuit_textview);
-
+        betSuit.setText("spades");
+        nextCard = view.findViewById(R.id.next_card);
+        nextCard.setEnabled(true);
         increaseBet = view.findViewById(R.id.higher_bet);
         increaseBet.setOnClickListener(new View.OnClickListener()
         {
             @Override
-                    public void onClick(View v) { game.userList.get(0).increaseBet();
+                    public void onClick(View v) {
+                betCount++;
+                betValue.setText(""+betCount);
         }
 
     });
@@ -133,7 +155,8 @@ public class HorseRaceScreen extends Fragment {
         {
         @Override
                 public void onClick(View v) {
-            game.userList.get(0).decreaseBet();
+            betCount--;
+            betValue.setText(""+betCount);
         }
         });
 
@@ -142,7 +165,8 @@ public class HorseRaceScreen extends Fragment {
         {
             @Override
             public void onClick(View v) {
-                game.userList.get(0).setSuit("Spade");
+                suit="S";
+                betSuit.setText("spades");
             }
         });
 
@@ -152,7 +176,8 @@ public class HorseRaceScreen extends Fragment {
             @Override
             public void onClick(View v)
             {
-                game.userList.get(0).setSuit("Heart");
+                suit="H";
+                betSuit.setText("hearts");
             }
         });
 
@@ -162,7 +187,8 @@ public class HorseRaceScreen extends Fragment {
             @Override
             public void onClick(View v)
             {
-                game.userList.get(0).setSuit("Club");
+                suit="C";
+                betSuit.setText("clubs");
             }
         });
 
@@ -170,17 +196,36 @@ public class HorseRaceScreen extends Fragment {
         diamondButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game.userList.get(0).setSuit("Diamond");
+                suit="D";
+                betSuit.setText("diamonds");
+            }
+        });
+        confirmButton = view.findViewById(R.id.confirmButton);
+        confirmButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                game.addBet(new User(user_id,user_name), betCount, suit);
+                updateDB();
+                confirmButton.setEnabled(false);
+            }
+        });
+        nextCard = view.findViewById(R.id.next_card);
+        nextCard.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                round();
             }
         });
 
         }
 
         private void updateDB() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
-        Log.d(TAG, "Updated database");
-        myRef.child(id).setValue(this.game);
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference();
+            Log.d(TAG, "Updated database");
+            myRef.child(id).setValue(this.game);
         }
 
 
@@ -188,18 +233,25 @@ public class HorseRaceScreen extends Fragment {
 
 
     private void handleGameStateUpdate() {
+        Log.d(TAG, "STATUS" + this.game.getStatus());
+        //on game over state
+        if(this.game.getStatus().equals(GameStatus.COMPLETED)) {
+            NavHostFragment.findNavController(HorseRaceScreen.this)
+                    .navigate(R.id.action_horserace_to_homescreen);
+            Log.d(TAG, "Game over, returning to home screen.");
+        }
+        //Log.d(TAG, "BETS" + this.game.getBets().size());
+        Log.d(TAG, "Bet count"+ this.game.getBets().size()+"");
+        if(this.game.getUsers().size()==this.game.getBets().size()){
+            this.game.setState(HorseRaceState.RACING);
+            updateDB();
+        }
 
-        //update DB
-        updateDB();
-
-        //Display what suit the player bet on and how much they bet
-        ((TextView)getActivity().findViewById(R.id.yourBet_textview)).setText(game.userList.get(0).getBetValue());
-        ((TextView)getActivity().findViewById(R.id.betValue_textview)).setText(game.userList.get(0).getSuit());
 
         if(!game.isStarted()) { //If game is still in betting phase enable all betting buttons
             increaseBet.setEnabled(true);
             decreaseBet.setEnabled(true);
-            confirmBet.setEnabled(true);
+            confirmButton.setEnabled(true);
             spadeButton.setEnabled(true);
             heartButton.setEnabled(true);
             clubButton.setEnabled(true);
@@ -208,7 +260,7 @@ public class HorseRaceScreen extends Fragment {
         else {//If game has started, disable betting buttons
             increaseBet.setEnabled(false);
             decreaseBet.setEnabled(false);
-            confirmBet.setEnabled(false);
+            confirmButton.setEnabled(false);
             spadeButton.setEnabled(false);
             heartButton.setEnabled(false);
             clubButton.setEnabled(false);
@@ -216,40 +268,15 @@ public class HorseRaceScreen extends Fragment {
 
         }
 
-        //on game over state
-        if(this.game.getStatus().equals(GameStatus.COMPLETED)) {
-            NavHostFragment.findNavController(HorseRaceScreen.this)
-                    .navigate(R.id.action_horseRaceScreen_to_HomeScreen);
-            Log.d(TAG, "Game over, returning to home screen.");
-        }
+
 
         //on racing state
         if(this.game.getStatus().equals("RACING"))
         {
-            String card = game.deck.drawCard();
-            game.cardsDrawn.add(card);
-            String suit = String.valueOf(card.charAt(1)); //Suit is second char in string
-            switch(suit) {
-                //Spade
-                case "S":
-                    game.incrementSpade();
-                    break;
-                case "H" :
-                    game.incrementHeart();
-                    break;
-                case "C" :
-                    game.incrementClub();
-                    break;
-                case "D" :
-                    game.incrementDiamond();
-                    break;
-                default:
-                    Log.i(TAG, "Card drawn resulted in error.");
-                    break;
-
-            }
+            nextCard.setEnabled(true);
         }
 
+        /*
         //Updating side where turned cards appear
         switch(game.cardsDrawn.size()) {
             case 1:
@@ -294,7 +321,7 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.side4)).setImageResource(R.drawable.back);
                 ((ImageView)getActivity().findViewById(R.id.side5)).setImageResource(R.drawable.back);
                 break;
-        }
+        }*/
 
 
         //Depending on how many spades have been drawn, display the ace of spades
@@ -350,6 +377,8 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.spade_position5)).setImageResource(android.R.color.transparent);
                 break;
         }
+
+
 
         switch(game.getHeartCount()) {
             case 1:
@@ -514,7 +543,9 @@ public class HorseRaceScreen extends Fragment {
         if(suitIn.equals("S"))
         {
             switch(valueIn) {
-                //ace of spades missing, ignoring and it will go to default
+                case "A" :
+                    returnValue = R.drawable.as;
+                    break;
                 case "2" :
                     returnValue = R.drawable.s2;
                     break;
@@ -705,5 +736,125 @@ public class HorseRaceScreen extends Fragment {
         }
 
         return returnValue;
+    }
+    public void round(){
+        String card = game.deck.drawCard();
+        game.cardsDrawn.add(card);
+        String suit = String.valueOf(card.charAt(1)); //Suit is second char in string
+        Log.d(TAG, "SELECTED CARD" + suit);
+        switch(suit) {
+            //Spade
+            case "S":
+                game.incrementSpade();
+                int newSpadeCount = game.getSpadeCount();
+                if(newSpadeCount>=6){
+                    done("Spades");
+                }
+                if(newSpadeCount>game.getLeftFlipped()){
+                    // Flip left
+                    flipLeft();
+                }
+                break;
+            case "H" :
+                game.incrementHeart();
+                int newHeartCount = game.getHeartCount();
+                if(newHeartCount>=6){
+                    done("Hearts");
+                }
+                if(newHeartCount>game.getLeftFlipped()){
+                    // Flip left
+                    flipLeft();
+                }
+                break;
+            case "C" :
+                game.incrementClub();
+                int newClubCount = game.getClubCount();
+                if(newClubCount>=6){
+                    done("Clubs");
+                }
+                if(newClubCount>game.getLeftFlipped()){
+                    // Flip left
+                    flipLeft();
+                }
+                break;
+            case "D" :
+                game.incrementDiamond();
+                int newDiamondCount = game.getDiamondCount();
+                if(newDiamondCount>=6){
+                    done("Diamonds");
+                }
+                if(newDiamondCount>game.getLeftFlipped()){
+                    // Flip left
+                    flipLeft();
+                }
+                break;
+            default:
+                Log.i(TAG, "Card drawn resulted in error.");
+                break;
+
+        }
+        updateDB();
+    }
+    public void flipLeft(){
+        Log.d(TAG, "FLIP LEFT");
+
+        String card = game.deck.drawCard();
+        game.cardsDrawn.add(card);
+        game.incrementLeftFlipped();
+        String suit = String.valueOf(card.charAt(1)); //Suit is second char in string
+        Log.d(TAG, "MOVE RESULT BACK ONE:" + suit);
+        int left = game.getLeftFlipped();
+        Log.d(TAG, "LFLIPPED" + left);
+        switch(left){
+            case 1:
+                side1.setImageResource(checkImageResource(card));
+                break;
+            case 2:
+                side2.setImageResource(checkImageResource(card));
+                break;
+            case 3:
+                side3.setImageResource(checkImageResource(card));
+                break;
+            case 4:
+                side4.setImageResource(checkImageResource(card));
+                break;
+            case 5:
+                side5.setImageResource(checkImageResource(card));
+                break;
+        }
+        // Decrement if on left side
+        switch(suit) {
+            case "S":
+                if(game.getSpadeCount()>0)
+                    game.decrementSpade();
+                break;
+            case "H" :
+                if(game.getHeartCount()>0)
+                    game.decrementHeart();
+                break;
+            case "C" :
+                if(game.getClubCount()>0)
+                    game.decrementClub();
+                break;
+            case "D" :
+                if(game.getDiamondCount()>0)
+                    game.decrementDiamond();
+                break;
+            default:
+                Log.i(TAG, "Card drawn resulted in error.");
+                break;
+
+        }
+        updateDB();
+
+    }
+    public void done(String suit){
+        Context context = getActivity().getApplicationContext();
+        CharSequence text = suit + " wins!";
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+        game.setStatus(GameStatus.COMPLETED);
+        updateDB();
     }
 }

@@ -86,6 +86,7 @@ public class CatchTheDealerScreen extends Fragment {
 
 
                 CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
+                //game.setStatus(GameStatus.STARTED);
                 setGame(game);
                 handleGameStateUpdate();
             }
@@ -241,7 +242,6 @@ public class CatchTheDealerScreen extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
         Log.d(TAG,"UPDATED DB:\n"+ this.game.toString());
-        this.game.setStatus(GameStatus.STARTED);
         myRef.child(id).setValue(this.game);
     }
 

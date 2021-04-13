@@ -22,9 +22,10 @@ public class HorseRace implements Game {
     private String sideCard3Suit;
     private String sideCard4Suit;
     private String sideCard5Suit;
+    private int leftFlipped=0;
     public Deck deck;
-    private GameType type = GameType.HORSE_RACE;
-    ArrayList<Bet> userList = new ArrayList<>(); // this will have to be changed
+    private GameType gameType = GameType.HORSE_RACE;
+    ArrayList<Bet> bets = new ArrayList<>(); // this will have to be changed
     ArrayList<String> cardsDrawn = new ArrayList<>();
 
 
@@ -48,45 +49,66 @@ public class HorseRace implements Game {
         this.sideCard4Suit = "";
         this.sideCard5Suit = "";
         this.deck = new Deck();
+        this.bets=new ArrayList<Bet>();
+        this.leftFlipped=0;
     }
 
     public int getSpadeCount() { return this.spadeCount; }
     public void incrementSpade() { this.spadeCount++; }
+    public void decrementSpade() { this.spadeCount--; }
     public int getHeartCount() { return this.heartCount; }
     public void incrementHeart() { this.heartCount++ ; }
+    public void decrementHeart() { this.heartCount-- ; }
     public int getClubCount() { return this.clubCount; }
     public void incrementClub() { this.clubCount++; }
+    public void decrementClub() { this.clubCount--; }
     public int getDiamondCount() { return this.diamondCount; }
     public void incrementDiamond() { this.diamondCount++; }
+    public void decrementDiamond() { this.diamondCount--; }
+    public GameType getGameType() {
+        return this.gameType;
+    }
+    public ArrayList<Bet> getBets(){
+        return this.bets;
+    }
+    public void setBets(ArrayList<Bet> bets){
+        this.bets = bets;
+    }
 
     public GameStatus getStatus() { return status; }
+    public void setStatus(GameStatus status) { this.status=status; }
+    public void setState(HorseRaceState state){
+        this.state=state;
+    }
     public HorseRaceState getState() { return state; }
 
 
-    //First stage of the game:
-        //Set up the three users that will be playing
-        User dav = new User("69", "Dav");
-        User ev = new User("420", "Ev");
-        User barb = new User("18", "Barb");
-
-        //Set up the bets the users are making
-        Bet davsBet = new Bet(dav, 3, "Diamond");
-        Bet evsBet = new Bet(ev, 2, "Heart");
-        Bet barbsBet = new Bet(barb, 4, "Spade");
-
     @Override
     public ArrayList<User> getUsers() {
-        return null;
+        return users;
     }
 
     @Override
     public void addUser(User user) {
+        users.add(user);
+    }
 
+    public void addBet(User user,int count, String suit){
+        Bet bet = new Bet(user, count, suit);
+        bets.add(bet);
+    }
+
+    public int getLeftFlipped(){
+        return this.leftFlipped;
+    }
+
+    public void incrementLeftFlipped(){
+        this.leftFlipped++;
     }
 
     @Override
     public boolean isStarted() {
-        return false;
+        return this.state==HorseRaceState.RACING;
     }
 
     @Override

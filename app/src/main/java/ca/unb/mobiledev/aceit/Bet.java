@@ -35,12 +35,8 @@ public class Bet{
 
     public void increaseBet() { betPlaced++; }
     public void decreaseBet() { betPlaced--; }
+    public int getBetPlaced(){return betPlaced;}
     public void setSuit(String suit) { this.suit = suit; }
-
-
-    public int getBetValue() { return betPlaced; }
-
     public String getSuit() { return suit; }
-
-    public String getUserName() { return user.getName(); }
+    public User getUser() { return user; }
 }
