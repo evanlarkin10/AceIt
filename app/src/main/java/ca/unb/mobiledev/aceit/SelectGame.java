@@ -97,7 +97,8 @@ public class SelectGame extends Fragment {
                 //SelectGameDirections.action_SelectGame_to_rideTheBusLobby action
                 //SelectGameDirections.action_SelectGame_to_rideTheBusLobby action = SelectGameDirections.actionSelectToCatchTheDealerLobby()
                 //SelectGameDirections.action_SelectGame_to_rideTheBusScreen action = SelectGameDirections.action_SelectGame_to_rideTheBusScreen(id);
-                SelectGameDirections.ActionSelectGameToRideTheBusScreen action = SelectGameDirections.actionSelectGameToRideTheBusScreen(id);
+                //SelectGameDirections.ActionSelectGameToRideTheBusScreen action = SelectGameDirections.actionSelectGameToRideTheBusScreen(id);
+                SelectGameDirections.ActionSelectGameToRideTheBusScreen2 action = SelectGameDirections.actionSelectGameToRideTheBusScreen2(id);
                 NavHostFragment.findNavController(SelectGame.this)
                         .navigate(action);
             }
