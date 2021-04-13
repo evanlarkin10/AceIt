@@ -32,8 +32,21 @@
         <action
             android:id="@+id/action_start_to_catch_the_dealer"
             app:destination="@id/CatchTheDealerScreen" />
+        <action
+            android:id="@+id/action_start_to_horserace"
+            app:destination="@id/HorseRaceScreen" />
         <argument
             android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/HorseRaceScreen"
+        android:name="ca.unb.mobiledev.aceit.HorseRaceScreen"
+        android:label="HorseRaceScreen" >
+        <action
+            android:id="@+id/action_horserace_to_homescreen"
+            app:destination="@id/HomeScreen" />
+        <argument android:name="id"
             app:argType="string" />
     </fragment>
     <fragment
