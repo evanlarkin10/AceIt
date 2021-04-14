@@ -7,8 +7,9 @@ public class Hand implements Serializable {
     private String card2 = "back";
     private String card3 = "back";
     private String card4 = "back";
-
+    private int pos;
     public Hand(){}
+
 
     public void addCard(String card, int pos){
         if(pos == 0){

@@ -18,10 +18,6 @@ public class RideTheBus implements Game {
     private int turn=0;
     private int dealer=0;
     private int streak=0;
-//    private String card1 = "back";
- //   private String card2 = "back";
-  //  private String card3 = "back";
-   // private String card4 = "back";
     private int maxPlayers;
     private boolean isStarted;
     public Deck deck;
@@ -40,7 +36,10 @@ public class RideTheBus implements Game {
         this.users=new ArrayList<User>();
         this.users.add(host);
         this.hands=new ArrayList<Hand>();
-        this.hands.add(new Hand());
+        Hand hand = new Hand();
+        this.hands.add(hand);
+
+
 
 
         this.maxPlayers=10;
@@ -137,11 +136,18 @@ public class RideTheBus implements Game {
     public void resetStreak(){
         this.streak=0;
     }
+/**
+    public void setCard1(){this.hands.get(this.users.size()).addCard("back",0);}
+    public void setCard2(){this.hands.get(this.users.size()).addCard("back",1);}
+    public void setCard3(){this.hands.get(this.users.size()).addCard("back",2);}
+    public void setCard4(){this.hands.get(this.users.size()).addCard("back",3);}
 
-    public void setCard1(String card){hands.get(getTurn()).addCard(card,0);}
-    public void setCard2(String card){hands.get(getTurn()).addCard(card,1);}
-    public void setCard3(String card){hands.get(getTurn()).addCard(card,2);}
-    public void setCard4(String card){hands.get(getTurn()).addCard(card,3);}
+*/
+
+    public void setCard1(String card){this.hands.get(0).addCard(card,0);}
+    public void setCard2(String card){this.hands.get(0).addCard(card,1);}
+    public void setCard3(String card){this.hands.get(0).addCard(card,2);}
+    public void setCard4(String card){this.hands.get(0).addCard(card,3);}
 
 
 
