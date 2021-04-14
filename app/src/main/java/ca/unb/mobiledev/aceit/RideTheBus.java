@@ -139,9 +139,9 @@ public class RideTheBus implements Game {
     }
 
     public void setCard1(String card){hands.get(getTurn()).addCard(card,0);}
-    public void setCard2(String card){hands.get(getTurn()).addCard(card,0);}
-    public void setCard3(String card){hands.get(getTurn()).addCard(card,0);}
-    public void setCard4(String card){hands.get(getTurn()).addCard(card,0);}
+    public void setCard2(String card){hands.get(getTurn()).addCard(card,1);}
+    public void setCard3(String card){hands.get(getTurn()).addCard(card,2);}
+    public void setCard4(String card){hands.get(getTurn()).addCard(card,3);}
 
 
 
