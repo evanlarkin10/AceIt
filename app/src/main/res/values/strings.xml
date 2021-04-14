@@ -11,6 +11,7 @@
     <string name="start_game">Start Game</string>
     <string name="lobby">Lobby</string>
     <string name="players">Players:</string>
+    <string name="deck">Deck</string>
     <string name="join_game">Join Game</string>
     <string name="join_code">Join Code</string>
     <string name="select_game">Select Game</string>

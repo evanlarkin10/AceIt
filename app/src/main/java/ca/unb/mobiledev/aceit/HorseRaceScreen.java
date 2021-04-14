@@ -52,30 +52,7 @@ public class HorseRaceScreen extends Fragment {
     private ImageView side3;
     private ImageView side2;
     private ImageView side1;
-    private ImageView spadeMover;
-    private ImageView spade1;
-    private ImageView spade2;
-    private ImageView spade3;
-    private ImageView spade4;
-    private ImageView spade5;
-    private ImageView heartMover;
-    private ImageView heart1;
-    private ImageView heart2;
-    private ImageView heart3;
-    private ImageView heart4;
-    private ImageView heart5;
-    private ImageView clubMover;
-    private ImageView club1;
-    private ImageView club2;
-    private ImageView club3;
-    private ImageView club4;
-    private ImageView club5;
-    private ImageView diamondMover;
-    private ImageView diamond1;
-    private ImageView diamond2;
-    private ImageView diamond3;
-    private ImageView diamond4;
-    private ImageView diamond5;
+    private ImageView deck;
     private String user_name="";
     private String user_id="";
 
@@ -95,7 +72,7 @@ public class HorseRaceScreen extends Fragment {
         HorseRaceScreenArgs args = HorseRaceScreenArgs.fromBundle(getArguments());
         id = args.getId();
 
-
+        deck = view.findViewById(R.id.deck);
         side1 = view.findViewById(R.id.side1);
         side2 = view.findViewById(R.id.side2);
         side3 = view.findViewById(R.id.side3);
@@ -536,6 +513,10 @@ public class HorseRaceScreen extends Fragment {
         //This method will take a card value and returns its image path to use to update UI
         String valueIn = String.valueOf(s.charAt(0)); //value is first part of string
         String suitIn = String.valueOf(s.charAt(1)); //value is first part of string
+        if(String.valueOf(s.charAt(0)).equals("1")){
+            // Its a ten, suit is third char
+            suitIn = String.valueOf(s.charAt(2));
+        }
         int returnValue = 0;
 
         if(suitIn.equals("S"))
@@ -568,7 +549,7 @@ public class HorseRaceScreen extends Fragment {
                 case "9" :
                     returnValue = R.drawable.s9;
                     break;
-                case "10" :
+                case "1" :
                     returnValue = R.drawable.s10;
                     break;
                 case "J" :
@@ -616,7 +597,7 @@ public class HorseRaceScreen extends Fragment {
                 case "9" :
                     returnValue = R.drawable.h9;
                     break;
-                case "10" :
+                case "1" :
                     returnValue = R.drawable.h10;
                     break;
                 case "J" :
@@ -663,7 +644,7 @@ public class HorseRaceScreen extends Fragment {
                 case "9" :
                     returnValue = R.drawable.c9;
                     break;
-                case "10" :
+                case "1" :
                     returnValue = R.drawable.c10;
                     break;
                 case "J" :
@@ -711,7 +692,7 @@ public class HorseRaceScreen extends Fragment {
                 case "9" :
                     returnValue = R.drawable.d9;
                     break;
-                case "10" :
+                case "1" :
                     returnValue = R.drawable.d10;
                     break;
                 case "J" :
@@ -737,9 +718,15 @@ public class HorseRaceScreen extends Fragment {
     }
     public void round(){
         String card = game.deck.drawCard();
+        Log.d(TAG, "SELECTED CARD" + card);
         game.cardsDrawn.add(card);
         String suit = String.valueOf(card.charAt(1)); //Suit is second char in string
-        Log.d(TAG, "SELECTED CARD" + suit);
+        if(String.valueOf(card.charAt(0)).equals("1")){
+            // Its a ten, suit is third char
+            suit = String.valueOf(card.charAt(2));
+        }
+
+        deck.setImageResource(checkImageResource(card));
         switch(suit) {
             //Spade
             case "S":
@@ -800,9 +787,16 @@ public class HorseRaceScreen extends Fragment {
         game.cardsDrawn.add(card);
         game.incrementLeftFlipped();
         String suit = String.valueOf(card.charAt(1)); //Suit is second char in string
+        if(String.valueOf(card.charAt(0)).equals("1")){
+
+            // Its a ten, suit is third char
+            suit = String.valueOf(card.charAt(2));
+            Log.d(TAG, "ITS A 10:" + suit);
+        }
         Log.d(TAG, "MOVE RESULT BACK ONE:" + suit);
         int left = game.getLeftFlipped();
         Log.d(TAG, "LFLIPPED" + left);
+
         switch(left){
             case 1:
                 side1.setImageResource(checkImageResource(card));

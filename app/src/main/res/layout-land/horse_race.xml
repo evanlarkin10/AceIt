@@ -384,6 +384,33 @@
 
     </TableLayout>
 
+    <LinearLayout
+        android:layout_width="91dp"
+        android:layout_height="97dp"
+        android:layout_column="0"
+
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/deckText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/deck"
+
+            />
+
+        <ImageView
+            android:id="@+id/deck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/back" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/confirmButton"
         android:layout_width="wrap_content"
