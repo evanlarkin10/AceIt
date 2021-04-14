@@ -189,6 +189,7 @@ public class CatchTheDealer implements Game {
     public void resetStreak(){
         this.streak=0;
     }
+    public void addHand(Hand hand){ /*Needed for Cross the bridge*/}
 
     public void incrementCard(String card){
         switch(card.charAt(0)){

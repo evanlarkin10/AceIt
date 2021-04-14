@@ -10,5 +10,6 @@ public interface Game {
     void start();
     GameType getGameType();
     GameStatus getStatus();
+    void addHand(Hand hand);
     
 }

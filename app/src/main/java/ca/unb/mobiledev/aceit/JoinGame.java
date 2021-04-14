@@ -97,6 +97,10 @@ public class JoinGame extends Fragment {
                             }
                             else{
                                 game.addUser(newUser);
+                                if(game.getGameType()==GameType.CROSS_THE_BRIDGE){
+                                    Hand hand = new Hand();
+                                    game.addHand(hand);
+                                }
                                 myRef.child(id).setValue(game);
                                 JoinGameDirections.ActionJoinToCatchTheDealerLobby action = JoinGameDirections.actionJoinToCatchTheDealerLobby(id);
                                 NavHostFragment.findNavController(JoinGame.this)

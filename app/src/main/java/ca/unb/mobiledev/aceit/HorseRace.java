@@ -81,6 +81,7 @@ public class HorseRace implements Game {
         this.state=state;
     }
     public HorseRaceState getState() { return state; }
+    public void addHand(Hand hand){ /*Needed for Cross the bridge*/}
 
 
     @Override

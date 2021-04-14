@@ -79,6 +79,10 @@ public class RideTheBus implements Game {
         return this.dealer;
     }
 
+    public void addHand(Hand hand){
+        this.hands.add(hand);
+    }
+
 
 
     public ArrayList<User> getUsers(){
