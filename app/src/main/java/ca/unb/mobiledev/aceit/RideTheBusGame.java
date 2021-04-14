@@ -477,6 +477,7 @@ public class RideTheBusGame extends Fragment {
             //3 > 1 AND 3 < 2
             //}
             Log.d("INBETWEENOUTSIDELOGIC",this.game.getCard1().charAt(0)+" "+this.game.getCard2().charAt(0)+" " + this.game.getCard3().charAt(0)+ " " +this.game.getDeck().compare(c1, c3) + this.game.getDeck().compare(c3, c2)  );
+            Log.d("INBETWEENOUTSIDELOGIC", c1+" "+c2+" "+c3+" inbet:" + this.game.getDeck().inBetween(c1,c2,c3));
 
             if(butClick == 1){
                 if(this.game.getDeck().compare(c1, c3) == 1 && this.game.getDeck().compare(c3, c2) == 1){

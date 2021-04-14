@@ -74,6 +74,29 @@ public class Deck implements Serializable {
         else{ return 0;}
     }
 
+    public boolean inBetween(char c1, char c2, char c3){
+        String[] defined = {"2","3","4","5","6","7","8","9","1","J","Q","K"};
+        if(compare(c1,c2)==1){
+            int firstInd = Arrays.asList(defined).indexOf(String.valueOf(c1));
+            int secondInd = Arrays.asList(defined).indexOf(String.valueOf(c2));
+            for(int i=firstInd;i<=secondInd;i++){
+                if(defined[i].equals(String.valueOf(c3))){
+                    return true;
+                }
+            }
+            return false;
+        }
+        else{
+            int firstInd = Arrays.asList(defined).indexOf(String.valueOf(c2));
+            int secondInd = Arrays.asList(defined).indexOf(String.valueOf(c1));
+            for(int i=firstInd;i<=secondInd;i++){
+                if(defined[i].equals(String.valueOf(c3))){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
     public int difference(char c1, char c2){
         String[] defined = {"2","3","4","5","6","7","8","9","1","J","Q","K"};
         int v1 = Arrays.asList(defined).indexOf(String.valueOf(c1));
