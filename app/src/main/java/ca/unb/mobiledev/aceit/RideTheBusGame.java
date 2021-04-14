@@ -431,7 +431,7 @@ public class RideTheBusGame extends Fragment {
                 this.game.setState(RideTheBusState.IO);
             }
 
-            if(this.game.getDeck().compare(this.game.getCard1().charAt(0), this.game.getCard2().charAt(0)) == 1){
+            if(this.game.getDeck().compare(this.game.getCard1().charAt(0), this.game.getCard2().charAt(0)) == -1){
                 if(butClick == 2){
                     Toast toast = Toast.makeText(getContext(), "Incorrect take a drink", Toast.LENGTH_LONG);
                     toast.show();
@@ -443,7 +443,7 @@ public class RideTheBusGame extends Fragment {
                 }
             }
 
-            if(this.game.getDeck().compare(this.game.getCard1().charAt(0), this.game.getCard2().charAt(0)) == -1){
+            if(this.game.getDeck().compare(this.game.getCard1().charAt(0), this.game.getCard2().charAt(0)) == 1){
                 if(butClick == 1){
                     Toast toast = Toast.makeText(getContext(), "Incorrect take a drink", Toast.LENGTH_LONG);
                     toast.show();
@@ -480,7 +480,7 @@ public class RideTheBusGame extends Fragment {
             Log.d("INBETWEENOUTSIDELOGIC", c1+" "+c2+" "+c3+" inbet:" + this.game.getDeck().inBetween(c1,c2,c3));
 
             if(butClick == 1){
-                if(this.game.getDeck().compare(c1, c3) == 1 && this.game.getDeck().compare(c3, c2) == 1){
+                if(this.game.getDeck().compare(c1, c3) == -1 && this.game.getDeck().compare(c3, c2) == -1){
                     Toast toast = Toast.makeText(getContext(), "Correct Give out a drink", Toast.LENGTH_LONG);
                     toast.show();
                 }
@@ -494,7 +494,7 @@ public class RideTheBusGame extends Fragment {
             //}
 
             if(butClick == 2){
-                if(this.game.getDeck().compare(c3, c1) == 1 && this.game.getDeck().compare(c2, c3) == 1){
+                if(this.game.getDeck().compare(c3, c1) == -1 && this.game.getDeck().compare(c2, c3) == -1){
                     Toast toast = Toast.makeText(getContext(), "Correct Give out a drink", Toast.LENGTH_LONG);
                     toast.show();
                 }
