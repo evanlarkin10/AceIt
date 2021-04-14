@@ -261,8 +261,8 @@ public class RideTheBusGame extends Fragment {
                 trBut.setVisibility(View.VISIBLE);
                 drawBut.setVisibility(View.VISIBLE);
 
-                tlBut.setText("Higher");
-                trBut.setText("Lower");
+                tlBut.setText("Lower");
+                trBut.setText("Higher");
 
                 tlBut.setClickable(true);
                 trBut.setClickable(true);
@@ -476,6 +476,7 @@ public class RideTheBusGame extends Fragment {
             //B1 FR 3 TRUE THEN{
             //3 > 1 AND 3 < 2
             //}
+            Log.d("INBETWEENOUTSIDELOGIC",this.game.getCard1().charAt(0)+" "+this.game.getCard2().charAt(0)+" " + this.game.getCard3().charAt(0)+ " " +this.game.getDeck().compare(c1, c3) + this.game.getDeck().compare(c3, c2)  );
 
             if(butClick == 1){
                 if(this.game.getDeck().compare(c1, c3) == 1 && this.game.getDeck().compare(c3, c2) == 1){
