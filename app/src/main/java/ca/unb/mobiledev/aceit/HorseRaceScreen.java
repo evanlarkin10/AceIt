@@ -240,6 +240,14 @@ public class HorseRaceScreen extends Fragment {
 
 
     private void handleGameStateUpdate() {
+        //Set Side cards
+        side1.setImageResource(checkImageResource(this.game.getSideCard1()));
+        side2.setImageResource(checkImageResource(this.game.getSideCard2()));
+        side3.setImageResource(checkImageResource(this.game.getSideCard3()));
+        side4.setImageResource(checkImageResource(this.game.getSideCard4()));
+        side5.setImageResource(checkImageResource(this.game.getSideCard5()));
+        deck.setImageResource(checkImageResource(this.game.getTopDeck()));
+
         Log.d(TAG, "STATUS" + this.game.getStatus());
         //on game over state
         if(this.game.getStatus().equals(GameStatus.COMPLETED)) {
@@ -736,6 +744,7 @@ public class HorseRaceScreen extends Fragment {
         }
 
         deck.setImageResource(checkImageResource(card));
+        this.game.setTopDeck(card);
         switch(suit) {
             //Spade
             case "S":
@@ -809,18 +818,23 @@ public class HorseRaceScreen extends Fragment {
         switch(left){
             case 1:
                 side1.setImageResource(checkImageResource(card));
+                this.game.setSideCard1(card);
                 break;
             case 2:
                 side2.setImageResource(checkImageResource(card));
+                this.game.setSideCard2(card);
                 break;
             case 3:
                 side3.setImageResource(checkImageResource(card));
+                this.game.setSideCard3(card);
                 break;
             case 4:
                 side4.setImageResource(checkImageResource(card));
+                this.game.setSideCard4(card);
                 break;
             case 5:
                 side5.setImageResource(checkImageResource(card));
+                this.game.setSideCard5(card);
                 break;
         }
         // Decrement if on left side

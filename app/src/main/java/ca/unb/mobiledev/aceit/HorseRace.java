@@ -17,11 +17,12 @@ public class HorseRace implements Game {
     private int raceLength = 5; //The amount of side cards
     private GameStatus status;
     private HorseRaceState state;
-    private String sideCard1Suit;
-    private String sideCard2Suit;
-    private String sideCard3Suit;
-    private String sideCard4Suit;
-    private String sideCard5Suit;
+    private String sideCard1="back";
+    private String sideCard2="back";
+    private String sideCard3="back";
+    private String sideCard4="back";
+    private String sideCard5="back";
+    private String topDeck="back";
     private int leftFlipped=0;
     public Deck deck;
     private GameType gameType = GameType.HORSE_RACE;
@@ -43,11 +44,6 @@ public class HorseRace implements Game {
         this.raceLength = 5; //play five cards on the side
         this.status = GameStatus.WAITING;
         this.state = HorseRaceState.BETTING;
-        this.sideCard1Suit = "";
-        this.sideCard2Suit = "";
-        this.sideCard3Suit = "";
-        this.sideCard4Suit = "";
-        this.sideCard5Suit = "";
         this.deck = new Deck();
         this.bets=new ArrayList<Bet>();
         this.leftFlipped=0;
@@ -82,6 +78,43 @@ public class HorseRace implements Game {
     }
     public HorseRaceState getState() { return state; }
     public void addHand(Hand hand){ /*Needed for Cross the bridge*/}
+    public String getSideCard1() {
+        return this.sideCard1;
+    }
+    public String getSideCard2() {
+        return this.sideCard2;
+    }
+    public String getSideCard3() {
+        return this.sideCard3;
+    }
+    public String getSideCard4() {
+        return this.sideCard4;
+    }public String getSideCard5() {
+        return this.sideCard5;
+    }
+    public void setSideCard1(String card){
+        this.sideCard1=card;
+    }
+    public void setSideCard2(String card){
+        this.sideCard2=card;
+    }
+    public void setSideCard3(String card){
+        this.sideCard3=card;
+    }
+    public void setSideCard4(String card){
+        this.sideCard4=card;
+    }
+    public void setSideCard5(String card){
+        this.sideCard5=card;
+    }
+    public void setTopDeck(String card){
+        this.topDeck=card;
+    }
+    public String getTopDeck(){
+        return this.topDeck;
+    }
+
+
 
 
     @Override
