@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_start_to_horserace"
             app:destination="@id/HorseRaceScreen" />
+        <action
+            android:id="@+id/action_start_to_crossthebridge"
+            app:destination="@id/RideTheBusGame" />
         <argument
             android:name="id"
             app:argType="string" />
@@ -59,10 +62,6 @@
         <action
             android:id="@+id/action_select_to_catch_the_dealer_lobby"
             app:destination="@id/CatchTheDealerLobby" />
-        <action
-            android:id="@+id/action_SelectGame_to_rideTheBusScreen2"
-            app:destination="@id/rideTheBusScreen2" />
-
     </fragment>
     <fragment
         android:id="@+id/JoinGame"
@@ -95,24 +94,9 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/rideTheBusScreen2"
-        android:name="ca.unb.mobiledev.aceit.RideTheBusScreen"
-        android:label="fragment_ride_the_bus_screen"
-        tools:layout="@layout/fragment_ride_the_bus_screen" >
-        <action
-            android:id="@+id/action_rideTheBusScreen2_to_rideTheBusGame2"
-            app:destination="@id/rideTheBusGame2" />
-        <argument
-            android:name="id"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_rideTheBusScreen2_to_HomeScreen2"
-            app:destination="@id/HomeScreen" />
-    </fragment>
-    <fragment
-        android:id="@+id/rideTheBusGame2"
+        android:id="@+id/RideTheBusGame"
         android:name="ca.unb.mobiledev.aceit.RideTheBusGame"
-        android:label="fragment_ride_the_bus_game"
+        android:label="RideTheBusScreen"
         tools:layout="@layout/fragment_ride_the_bus_game" >
         <action
             android:id="@+id/action_rideTheBusGame2_to_HomeScreen"

@@ -98,6 +98,7 @@ public class CatchTheDealerLobby extends Fragment {
             public void onClick(View view) {
                 CatchTheDealerLobbyDirections.ActionStartToCatchTheDealer actionCatch = CatchTheDealerLobbyDirections.actionStartToCatchTheDealer(id);
                 CatchTheDealerLobbyDirections.ActionStartToHorserace actionHorse = CatchTheDealerLobbyDirections.actionStartToHorserace(id);
+                CatchTheDealerLobbyDirections.ActionStartToCrossthebridge actionCross = CatchTheDealerLobbyDirections.actionStartToCrossthebridge(id);
                 //action.setId("1234");
                 Log.d(TAG, "GT"+gameType);
                 myRef.child(id).removeEventListener(gameListener);
@@ -108,6 +109,10 @@ public class CatchTheDealerLobby extends Fragment {
                 if(gameType==GameType.HORSE_RACE) {
                     NavHostFragment.findNavController(CatchTheDealerLobby.this)
                             .navigate(actionHorse);
+                }
+                if(gameType==GameType.CROSS_THE_BRIDGE) {
+                    NavHostFragment.findNavController(CatchTheDealerLobby.this)
+                            .navigate(actionCross);
                 }
 
                 // TODO: Repeat conditional for other game types.

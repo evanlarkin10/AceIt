@@ -335,7 +335,7 @@ public class HorseRaceScreen extends Fragment {
         switch(game.getSpadeCount()) {
             case 1:
                 ((ImageView)getActivity().findViewById(R.id.spade_mover)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.spade_position1)).setImageResource(R.drawable.sk);
+                ((ImageView)getActivity().findViewById(R.id.spade_position1)).setImageResource(R.drawable.as);
                 ((ImageView)getActivity().findViewById(R.id.spade_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position3)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position4)).setImageResource(android.R.color.transparent);
@@ -344,7 +344,7 @@ public class HorseRaceScreen extends Fragment {
             case 2:
                 ((ImageView)getActivity().findViewById(R.id.spade_mover)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position1)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.spade_position2)).setImageResource(R.drawable.sk);
+                ((ImageView)getActivity().findViewById(R.id.spade_position2)).setImageResource(R.drawable.as);
                 ((ImageView)getActivity().findViewById(R.id.spade_position3)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position4)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position5)).setImageResource(android.R.color.transparent);
@@ -353,7 +353,7 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.spade_mover)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position1)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position2)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.spade_position3)).setImageResource(R.drawable.sk);
+                ((ImageView)getActivity().findViewById(R.id.spade_position3)).setImageResource(R.drawable.as);
                 ((ImageView)getActivity().findViewById(R.id.spade_position4)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position5)).setImageResource(android.R.color.transparent);
                 break;
@@ -362,7 +362,7 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.spade_position1)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position3)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.spade_position4)).setImageResource(R.drawable.sk);
+                ((ImageView)getActivity().findViewById(R.id.spade_position4)).setImageResource(R.drawable.as);
                 ((ImageView)getActivity().findViewById(R.id.spade_position5)).setImageResource(android.R.color.transparent);
                 break;
             case 5:
@@ -371,10 +371,10 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.spade_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position3)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position4)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.spade_position5)).setImageResource(R.drawable.sk);
+                ((ImageView)getActivity().findViewById(R.id.spade_position5)).setImageResource(R.drawable.as);
                 break;
             default:
-                ((ImageView)getActivity().findViewById(R.id.spade_mover)).setImageResource(R.drawable.sk);
+                ((ImageView)getActivity().findViewById(R.id.spade_mover)).setImageResource(R.drawable.as);
                 ((ImageView)getActivity().findViewById(R.id.spade_position1)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.spade_position3)).setImageResource(android.R.color.transparent);
@@ -439,7 +439,7 @@ public class HorseRaceScreen extends Fragment {
         switch(game.getClubCount()) {
             case 1:
                 ((ImageView)getActivity().findViewById(R.id.club_mover)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.club_position1)).setImageResource(R.drawable.ck);
+                ((ImageView)getActivity().findViewById(R.id.club_position1)).setImageResource(R.drawable.ac);
                 ((ImageView)getActivity().findViewById(R.id.club_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position3)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position4)).setImageResource(android.R.color.transparent);
@@ -448,7 +448,7 @@ public class HorseRaceScreen extends Fragment {
             case 2:
                 ((ImageView)getActivity().findViewById(R.id.club_mover)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position1)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.club_position2)).setImageResource(R.drawable.ck);
+                ((ImageView)getActivity().findViewById(R.id.club_position2)).setImageResource(R.drawable.ac);
                 ((ImageView)getActivity().findViewById(R.id.club_position3)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position4)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position5)).setImageResource(android.R.color.transparent);
@@ -457,7 +457,7 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.club_mover)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position1)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position2)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.club_position3)).setImageResource(R.drawable.ck);
+                ((ImageView)getActivity().findViewById(R.id.club_position3)).setImageResource(R.drawable.ac);
                 ((ImageView)getActivity().findViewById(R.id.club_position4)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position5)).setImageResource(android.R.color.transparent);
                 break;
@@ -466,7 +466,7 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.club_position1)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position3)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.club_position4)).setImageResource(R.drawable.ck);
+                ((ImageView)getActivity().findViewById(R.id.club_position4)).setImageResource(R.drawable.ac);
                 ((ImageView)getActivity().findViewById(R.id.club_position5)).setImageResource(android.R.color.transparent);
                 break;
             case 5:
@@ -475,10 +475,10 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.club_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position3)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position4)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.club_position5)).setImageResource(R.drawable.ck);
+                ((ImageView)getActivity().findViewById(R.id.club_position5)).setImageResource(R.drawable.ac);
                 break;
             default:
-                ((ImageView)getActivity().findViewById(R.id.club_mover)).setImageResource(R.drawable.sk);
+                ((ImageView)getActivity().findViewById(R.id.club_mover)).setImageResource(R.drawable.ac);
                 ((ImageView)getActivity().findViewById(R.id.club_position1)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.club_position3)).setImageResource(android.R.color.transparent);
@@ -490,7 +490,7 @@ public class HorseRaceScreen extends Fragment {
         switch(game.getDiamondCount()) {
             case 1:
                 ((ImageView)getActivity().findViewById(R.id.diamond_mover)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.diamond_position1)).setImageResource(R.drawable.dk);
+                ((ImageView)getActivity().findViewById(R.id.diamond_position1)).setImageResource(R.drawable.ad);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position3)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position4)).setImageResource(android.R.color.transparent);
@@ -499,7 +499,7 @@ public class HorseRaceScreen extends Fragment {
             case 2:
                 ((ImageView)getActivity().findViewById(R.id.diamond_mover)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position1)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.diamond_position2)).setImageResource(R.drawable.dk);
+                ((ImageView)getActivity().findViewById(R.id.diamond_position2)).setImageResource(R.drawable.ad);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position3)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position4)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position5)).setImageResource(android.R.color.transparent);
@@ -508,7 +508,7 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.diamond_mover)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position1)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position2)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.diamond_position3)).setImageResource(R.drawable.dk);
+                ((ImageView)getActivity().findViewById(R.id.diamond_position3)).setImageResource(R.drawable.ad);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position4)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position5)).setImageResource(android.R.color.transparent);
                 break;
@@ -517,7 +517,7 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.diamond_position1)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position3)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.diamond_position4)).setImageResource(R.drawable.dk);
+                ((ImageView)getActivity().findViewById(R.id.diamond_position4)).setImageResource(R.drawable.ad);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position5)).setImageResource(android.R.color.transparent);
                 break;
             case 5:
@@ -526,10 +526,10 @@ public class HorseRaceScreen extends Fragment {
                 ((ImageView)getActivity().findViewById(R.id.diamond_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position3)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position4)).setImageResource(android.R.color.transparent);
-                ((ImageView)getActivity().findViewById(R.id.diamond_position5)).setImageResource(R.drawable.dk);
+                ((ImageView)getActivity().findViewById(R.id.diamond_position5)).setImageResource(R.drawable.ad);
                 break;
             default:
-                ((ImageView)getActivity().findViewById(R.id.diamond_mover)).setImageResource(R.drawable.dk);
+                ((ImageView)getActivity().findViewById(R.id.diamond_mover)).setImageResource(R.drawable.ad);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position1)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position2)).setImageResource(android.R.color.transparent);
                 ((ImageView)getActivity().findViewById(R.id.diamond_position3)).setImageResource(android.R.color.transparent);

@@ -7,7 +7,8 @@ enum CatchTheDealerState{
     DRAW,
     GUESS1,
     GUESS2,
-    BETTING
+    BETTING,// Used in horse race, required before we know which game is joined
+    RB// Used in horse cross the bridge, required before we know which game is joined
 }
 
 public class CatchTheDealer implements Game {

@@ -51,38 +51,11 @@ public class RideTheBusGame extends Fragment {
     private int cardPos = 0;
     private int butClick= 0;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-   // private static final String ARG_PARAM1 = "param1";
-   // private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    //private String mParam1;
-    //private String mParam2;
 
     public RideTheBusGame() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RideTheBusGame.
-     */
-    // TODO: Rename and change types and number of parameters
-  /**
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -122,7 +95,7 @@ public class RideTheBusGame extends Fragment {
 
 
         //tlBut.setText("Left Button");
-        RideTheBusScreenArgs args = RideTheBusScreenArgs.fromBundle(getArguments());
+        RideTheBusGameArgs args = RideTheBusGameArgs.fromBundle(getArguments());
         id = args.getId();
 
         // Set user id
@@ -229,12 +202,6 @@ public class RideTheBusGame extends Fragment {
 
     private void handleGameStateUpdate() {
 
-        //hand1 = getActivity().findViewById(R.id.imageView4);
-        //hand2 = getActivity().findViewById(R.id.imageView7);
-        //hand3 = getActivity().findViewById(R.id.imageView8);
-        //hand4 = getActivity().findViewById(R.id.imageView9);
-
-        //int out = checkImageResource(hand1);
 
         hand1.setImageResource(checkImageResource(this.game.getCard1()));
         hand2.setImageResource(checkImageResource(this.game.getCard2()));
@@ -307,7 +274,7 @@ public class RideTheBusGame extends Fragment {
                 tlBut.setText("Hearts");
                 trBut.setText("Clubs");
                 brBut.setText("Diamonds");
-                blBut.setText("Spaids");
+                blBut.setText("Spades");
 
 
                 tlBut.setClickable(true);
@@ -316,20 +283,6 @@ public class RideTheBusGame extends Fragment {
                 brBut.setClickable(true);
                 //drawBut.setClickable(true);
             }
-/*
-        else{
-            tlBut.setVisibility(View.INVISIBLE);
-            trBut.setVisibility(View.INVISIBLE);
-            blBut.setVisibility(View.INVISIBLE);
-            brBut.setVisibility(View.INVISIBLE);
-            drawBut.setVisibility(View.INVISIBLE);
-
-            brBut.setClickable(false);
-            blBut.setClickable(false);
-            drawBut.setClickable(false);
-        }
-
-*/
         }
 
         else{
@@ -337,16 +290,15 @@ public class RideTheBusGame extends Fragment {
             toast.show();
         }
         if(this.game.getStatus().equals(GameStatus.COMPLETED)){
-            NavHostFragment.findNavController(RideTheBusGame.this)
-                    .navigate(R.id.action_rideTheBusScreen2_to_HomeScreen2);
+            try {
+                NavHostFragment.findNavController(RideTheBusGame.this)
+                        .navigate(R.id.action_rideTheBusGame2_to_HomeScreen);
+            } catch (IllegalArgumentException e) {
+                Log.e(TAG, "Multiple navigation attempts handled.");
+            }
+
         }
 
-
-
-
-
-
-        ///////////////once right or left is chosen let the draw button be clickable
 
     }
 
