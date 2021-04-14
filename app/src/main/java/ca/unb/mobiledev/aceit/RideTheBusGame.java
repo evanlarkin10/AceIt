@@ -385,7 +385,7 @@ public class RideTheBusGame extends Fragment {
 
         Log.d("TAG", "CALLING SET CARD" + card);
         if(cardPos == 0){
-            this.game.setCard1(card);
+            this.game.setCard1(card, this.game.getTurn());
             cardPos+=1;
             if(this.game.getTurn()+1==this.game.getUsers().size()) {
                 this.game.setState(RideTheBusState.HL);
@@ -426,7 +426,7 @@ public class RideTheBusGame extends Fragment {
 
         else if(cardPos == 1){
             cardPos+=1;
-            this.game.setCard2(card);
+            this.game.setCard2(card, this.game.getTurn());
             if(this.game.getTurn()+1==this.game.getUsers().size()) {
                 this.game.setState(RideTheBusState.IO);
             }
@@ -467,7 +467,7 @@ public class RideTheBusGame extends Fragment {
         }
 
         else if(cardPos == 2){
-             this.game.setCard3(card);
+             this.game.setCard3(card, this.game.getTurn());
             cardPos+=1;
 
             char c1 = this.game.getCard1().charAt(0);
@@ -513,7 +513,7 @@ public class RideTheBusGame extends Fragment {
         }
 
         else if(cardPos == 3){
-            this.game.setCard4(card);
+            this.game.setCard4(card, this.game.getTurn());
             cardPos+=1;
             String c4 = String.valueOf(this.game.getCard4().charAt(1));
             if(c4.equals("H")){

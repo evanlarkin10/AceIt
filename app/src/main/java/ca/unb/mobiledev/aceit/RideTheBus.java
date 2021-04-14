@@ -155,13 +155,12 @@ public class RideTheBus implements Game {
 
 */
 
-    public void setCard1(String card){
-        Log.d("TAG", "SET CARD1" + this.hands);
+    public void setCard1(String card, int turn){
         if(this.hands!=null)
-        this.hands.get(0).addCard(card,0);}
-    public void setCard2(String card){if(this.hands!=null)this.hands.get(0).addCard(card,1);}
-    public void setCard3(String card){if(this.hands!=null)this.hands.get(0).addCard(card,2);}
-    public void setCard4(String card){if(this.hands!=null)this.hands.get(0).addCard(card,3);}
+        this.hands.get(turn).addCard(card,0);}
+    public void setCard2(String card, int turn){if(this.hands!=null)this.hands.get(turn).addCard(card,1);}
+    public void setCard3(String card, int turn){if(this.hands!=null)this.hands.get(turn).addCard(card,2);}
+    public void setCard4(String card, int turn){if(this.hands!=null)this.hands.get(turn).addCard(card,3);}
 
 
 
