@@ -494,7 +494,7 @@ public class RideTheBusGame extends Fragment {
             //}
 
             if(butClick == 2){
-                if(this.game.getDeck().compare(c3, c1) == -1 && this.game.getDeck().compare(c2, c3) == -1){
+                if(this.game.getDeck().compare(c3, c1) == 1 && this.game.getDeck().compare(c2, c3) == 1){
                     Toast toast = Toast.makeText(getContext(), "Correct Give out a drink", Toast.LENGTH_LONG);
                     toast.show();
                 }
@@ -534,7 +534,7 @@ public class RideTheBusGame extends Fragment {
             }
 
             if(c4.equals("D")){
-                if(butClick == 3){
+                if(butClick == 4){
                     Toast toast = Toast.makeText(getContext(), "Correct Give out a drink", Toast.LENGTH_LONG);
                     toast.show();
                 }
@@ -546,7 +546,7 @@ public class RideTheBusGame extends Fragment {
             }
 
             if(c4.equals("S")){
-                if(butClick == 4){
+                if(butClick == 3){
                     Toast toast = Toast.makeText(getContext(), "Correct Give out a drink", Toast.LENGTH_LONG);
                     toast.show();
                 }
