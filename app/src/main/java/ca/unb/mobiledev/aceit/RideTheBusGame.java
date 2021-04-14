@@ -316,6 +316,10 @@ public class RideTheBusGame extends Fragment {
         }
         if(this.game.getStatus().equals(GameStatus.COMPLETED)){
             try {
+                Context context = getActivity().getApplicationContext();
+                int duration = Toast.LENGTH_LONG;
+                Toast toast = Toast.makeText(context, "Game Complete", duration);
+                toast.show();
                 NavHostFragment.findNavController(RideTheBusGame.this)
                         .navigate(R.id.action_rideTheBusGame2_to_HomeScreen);
             } catch (IllegalArgumentException e) {
@@ -428,24 +432,24 @@ public class RideTheBusGame extends Fragment {
             }
 
             if(this.game.getDeck().compare(this.game.getCard1().charAt(0), this.game.getCard2().charAt(0)) == 1){
-                if(butClick == 1){
+                if(butClick == 2){
                     Toast toast = Toast.makeText(getContext(), "Incorrect take a drink", Toast.LENGTH_LONG);
                     toast.show();
                 }
 
-                if(butClick == 2){
+                if(butClick == 1){
                     Toast toast = Toast.makeText(getContext(), "Correct Give out a drink", Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
 
             if(this.game.getDeck().compare(this.game.getCard1().charAt(0), this.game.getCard2().charAt(0)) == -1){
-                if(butClick == 2){
+                if(butClick == 1){
                     Toast toast = Toast.makeText(getContext(), "Incorrect take a drink", Toast.LENGTH_LONG);
                     toast.show();
                 }
 
-                if(butClick == 1){
+                if(butClick == 2){
                     Toast toast = Toast.makeText(getContext(), "Correct Give out a drink", Toast.LENGTH_LONG);
                     toast.show();
                 }
