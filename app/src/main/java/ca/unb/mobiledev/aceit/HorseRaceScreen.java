@@ -240,6 +240,7 @@ public class HorseRaceScreen extends Fragment {
 
 
     private void handleGameStateUpdate() {
+        //Log.d("CARDS", )
         //Set Side cards
         side1.setImageResource(checkImageResource(this.game.getSideCard1()));
         side2.setImageResource(checkImageResource(this.game.getSideCard2()));
@@ -527,6 +528,9 @@ public class HorseRaceScreen extends Fragment {
     }
 
     private int checkImageResource(String s) {
+        if(s.equals("back")){
+            return R.drawable.back;
+        }
         //This method will take a card value and returns its image path to use to update UI
         String valueIn = String.valueOf(s.charAt(0)); //value is first part of string
         String suitIn = String.valueOf(s.charAt(1)); //value is first part of string
