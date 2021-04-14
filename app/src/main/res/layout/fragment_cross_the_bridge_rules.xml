@@ -8,10 +8,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/catch_the_dealer_rules"
-        android:textSize="20dp"
         android:paddingBottom="20dp"
+        android:text="@string/ride_the_bus_rules"
         android:textAlignment="center"
-        />
+        android:textSize="20dp" />
 
 </RelativeLayout>
