@@ -517,6 +517,10 @@ public class RideTheBusGame extends Fragment {
             this.game.setCard4(card, this.game.getTurn());
             cardPos+=1;
             String c4 = String.valueOf(this.game.getCard4().charAt(1));
+            if(String.valueOf(this.game.getCard4().charAt(0)).equals("1")){
+                // Its a ten, suit is third char
+                c4 = String.valueOf(this.game.getCard4().charAt(2));
+            }
             if(c4.equals("H")){
                 if(butClick == 1){
                     Toast toast = Toast.makeText(getContext(), "Correct Give out a drink", Toast.LENGTH_LONG);
