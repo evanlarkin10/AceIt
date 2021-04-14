@@ -268,16 +268,9 @@ public class HorseRaceScreen extends Fragment {
             updateDB();
         }
 
-
-        if(game.isStarted()) { //If game is still in betting phase enable all betting buttons
-            nextCard.setEnabled(true);
-        }
-
-
-
-        //on racing state
-        if(this.game.getState().equals(HorseRaceState.RACING))
-        {
+        Log.d(TAG, "DRAWOR:"+ game.getUsers().get(0).getId()+" "+ user_id + " " + game.isStarted());
+        if(game.isStarted() && game.getUsers().get(0).getId().equals(user_id)) { //If game is still in betting phase enable all betting buttons
+            Log.d(TAG, "DRAWOR TRUE:"+ game.getUsers().get(0).getId()+" "+ user_id);
             nextCard.setEnabled(true);
         }
 

@@ -75,6 +75,26 @@ public class CatchTheDealerLobby extends Fragment {
                 setLobbyState(users.size(), game);
                 MyAdapter myAdapter = new MyAdapter(users);
                 playerListView.setAdapter(myAdapter);
+                if(game.getStatus()==GameStatus.STARTED){
+                    CatchTheDealerLobbyDirections.ActionStartToCatchTheDealer actionCatch = CatchTheDealerLobbyDirections.actionStartToCatchTheDealer(id);
+                    CatchTheDealerLobbyDirections.ActionStartToHorserace actionHorse = CatchTheDealerLobbyDirections.actionStartToHorserace(id);
+                    CatchTheDealerLobbyDirections.ActionStartToCrossthebridge actionCross = CatchTheDealerLobbyDirections.actionStartToCrossthebridge(id);
+                    //action.setId("1234");
+                    Log.d(TAG, "GT"+gameType);
+                    myRef.child(id).removeEventListener(this);
+                    if(gameType==GameType.CATCH_THE_DEALER) {
+                        NavHostFragment.findNavController(CatchTheDealerLobby.this)
+                                .navigate(actionCatch);
+                    }
+                    if(gameType==GameType.HORSE_RACE) {
+                        NavHostFragment.findNavController(CatchTheDealerLobby.this)
+                                .navigate(actionHorse);
+                    }
+                    if(gameType==GameType.CROSS_THE_BRIDGE) {
+                        NavHostFragment.findNavController(CatchTheDealerLobby.this)
+                                .navigate(actionCross);
+                    }
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
