@@ -16,15 +16,15 @@ public class Hand implements Serializable {
         }
 
         if(pos == 1){
-            card1 = card;
+            card2 = card;
         }
 
         if(pos == 2){
-            card1 = card;
+            card3 = card;
         }
 
         if(pos == 3){
-            card1 = card;
+            card4 = card;
         }
     }
 
