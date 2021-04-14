@@ -383,7 +383,7 @@ public class RideTheBusGame extends Fragment {
         if(cardPos == 0){
             this.game.setCard1(card);
             cardPos+=1;
-            if(this.game.getTurn()==this.game.getUsers().size()) {
+            if(this.game.getTurn()+1==this.game.getUsers().size()) {
                 this.game.setState(RideTheBusState.HL);
             }
             hand1.setImageResource(out);
@@ -423,7 +423,7 @@ public class RideTheBusGame extends Fragment {
         else if(cardPos == 1){
             cardPos+=1;
             this.game.setCard2(card);
-            if(this.game.getTurn()==this.game.getUsers().size()) {
+            if(this.game.getTurn()+1==this.game.getUsers().size()) {
                 this.game.setState(RideTheBusState.IO);
             }
 
@@ -501,7 +501,7 @@ public class RideTheBusGame extends Fragment {
 
 
 
-            if(this.game.getTurn()==this.game.getUsers().size()) {
+            if(this.game.getTurn()+1==this.game.getUsers().size()) {
                 this.game.setState(RideTheBusState.SUIT);
             }
             hand3.setImageResource(out);
@@ -560,7 +560,7 @@ public class RideTheBusGame extends Fragment {
             }
             //this.game.setState(RideTheBusState.SUIT);
             hand4.setImageResource(out);
-            if(this.game.getTurn()==this.game.getUsers().size()) {
+            if(this.game.getTurn()+1==this.game.getUsers().size()) {
                 this.game.setStatus(GameStatus.COMPLETED);
             }
             updateDB();
