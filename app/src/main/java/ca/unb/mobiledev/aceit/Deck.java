@@ -79,7 +79,7 @@ public class Deck implements Serializable {
         if(compare(c1,c2)==1){
             int firstInd = Arrays.asList(defined).indexOf(String.valueOf(c1));
             int secondInd = Arrays.asList(defined).indexOf(String.valueOf(c2));
-            for(int i=firstInd;i<=secondInd;i++){
+            for(int i=firstInd;i<secondInd;i++){
                 if(defined[i].equals(String.valueOf(c3))){
                     return true;
                 }
@@ -89,7 +89,7 @@ public class Deck implements Serializable {
         else{
             int firstInd = Arrays.asList(defined).indexOf(String.valueOf(c2));
             int secondInd = Arrays.asList(defined).indexOf(String.valueOf(c1));
-            for(int i=firstInd;i<=secondInd;i++){
+            for(int i=firstInd;i<secondInd;i++){
                 if(defined[i].equals(String.valueOf(c3))){
                     return true;
                 }
