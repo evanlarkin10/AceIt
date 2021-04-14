@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,6 +49,7 @@ public class RideTheBusGame extends Fragment {
     private ImageView hand2;
     private ImageView hand3;
     private ImageView hand4;
+    private TextView eventText;
     private int cardPos = 0;
     private int butClick= 0;
 
@@ -75,6 +77,8 @@ public class RideTheBusGame extends Fragment {
         trBut = view.findViewById(R.id.TRbut);
         blBut = view.findViewById(R.id.BLbut);
         brBut = view.findViewById(R.id.BRbut);
+        eventText = view.findViewById(R.id.event_rtb);
+
 
         blBut.setVisibility(view.INVISIBLE);
         brBut.setVisibility(view.INVISIBLE);
@@ -113,10 +117,20 @@ public class RideTheBusGame extends Fragment {
                 }
 
                 else{
+                    try{
                     DataSnapshot dataSnapshot = task.getResult();
                     RideTheBus game =  dataSnapshot.getValue(RideTheBus.class);
                     game.setStatus(GameStatus.STARTED);
                     myRef.child(id).setValue(game);
+                }catch(Exception e){
+                    Context context = getActivity().getApplicationContext();
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, "ERROR", duration);
+                    toast.show();
+                    NavHostFragment.findNavController(RideTheBusGame.this)
+                            .navigate(R.id.action_rideTheBusGame2_to_HomeScreen);
+                }
+
                 }
 
             }
@@ -130,6 +144,7 @@ public class RideTheBusGame extends Fragment {
 
 
                 RideTheBus game =  dataSnapshot.getValue(RideTheBus.class);
+                Log.d("Ride the bus game ", game.toString());
 
                 setGame(game);
 
@@ -202,11 +217,11 @@ public class RideTheBusGame extends Fragment {
 
     private void handleGameStateUpdate() {
 
-
-        hand1.setImageResource(checkImageResource(this.game.getCard1()));
-        hand2.setImageResource(checkImageResource(this.game.getCard2()));
-        hand3.setImageResource(checkImageResource(this.game.getCard3()));
-        hand4.setImageResource(checkImageResource(this.game.getCard4()));
+        Log.d(TAG, "TEEST"+ this.game.getTurn() + " " + this.game.getCard1());
+        //hand1.setImageResource(checkImageResource(this.game.getCard1()));
+        //hand2.setImageResource(checkImageResource(this.game.getCard2()));
+        //hand3.setImageResource(checkImageResource(this.game.getCard3()));
+        //hand4.setImageResource(checkImageResource(this.game.getCard4()));
 
 
 
@@ -217,6 +232,12 @@ public class RideTheBusGame extends Fragment {
         drawBut.setEnabled(false);
         User turn = this.game.getUsers().get(this.game.getTurn());
         if(turn.getId().equals(user_id)) {
+            eventText.setText("Your Turn");
+            tlBut.setEnabled(true);
+            trBut.setEnabled(true);
+            blBut.setEnabled(true);
+            brBut.setEnabled(true);
+            //drawBut.setEnabled(true);
 
 
             if (this.game.getState().equals(RideTheBusState.RB)) {
@@ -286,8 +307,12 @@ public class RideTheBusGame extends Fragment {
         }
 
         else{
-            Toast toast = Toast.makeText(getContext(), "Wait until its your turn", Toast.LENGTH_LONG);
-            toast.show();
+            eventText.setText("Wait Your Turn.");
+            tlBut.setEnabled(false);
+            trBut.setEnabled(false);
+            blBut.setEnabled(false);
+            brBut.setEnabled(false);
+            //drawBut.setEnabled(false);
         }
         if(this.game.getStatus().equals(GameStatus.COMPLETED)){
             try {
@@ -354,11 +379,13 @@ public class RideTheBusGame extends Fragment {
         this.game.setCardDrawn(card);
         int out = checkImageResource(card);
 
-
+        Log.d("TAG", "CALLING SET CARD" + card);
         if(cardPos == 0){
             this.game.setCard1(card);
             cardPos+=1;
-            this.game.setState(RideTheBusState.HL);
+            if(this.game.getTurn()==this.game.getUsers().size()) {
+                this.game.setState(RideTheBusState.HL);
+            }
             hand1.setImageResource(out);
 
             if(suit.equals("H") || suit.equals("D")){
@@ -396,7 +423,9 @@ public class RideTheBusGame extends Fragment {
         else if(cardPos == 1){
             cardPos+=1;
             this.game.setCard2(card);
-            this.game.setState(RideTheBusState.IO);
+            if(this.game.getTurn()==this.game.getUsers().size()) {
+                this.game.setState(RideTheBusState.IO);
+            }
 
             if(this.game.getDeck().compare(this.game.getCard1().charAt(0), this.game.getCard2().charAt(0)) == 1){
                 if(butClick == 1){
@@ -472,8 +501,9 @@ public class RideTheBusGame extends Fragment {
 
 
 
-
-            this.game.setState(RideTheBusState.SUIT);
+            if(this.game.getTurn()==this.game.getUsers().size()) {
+                this.game.setState(RideTheBusState.SUIT);
+            }
             hand3.setImageResource(out);
         }
 
@@ -530,7 +560,9 @@ public class RideTheBusGame extends Fragment {
             }
             //this.game.setState(RideTheBusState.SUIT);
             hand4.setImageResource(out);
-            this.game.setStatus(GameStatus.COMPLETED);
+            if(this.game.getTurn()==this.game.getUsers().size()) {
+                this.game.setStatus(GameStatus.COMPLETED);
+            }
             updateDB();
         }
         int cardID = getResources().getIdentifier( card + ".png", "drawable", "assets");
@@ -545,9 +577,18 @@ public class RideTheBusGame extends Fragment {
     }
 
     private int checkImageResource(String s) {
+        if(s.equals("back")){
+            return R.drawable.back;
+        }
         //This method will take a card value and returns its image path to use to update UI
         String valueIn = String.valueOf(s.charAt(0)); //value is first part of string
         String suitIn = String.valueOf(s.charAt(1)); //value is first part of string
+        if(String.valueOf(s.charAt(0)).equals("1")){
+
+            // Its a ten, suit is third char
+            suitIn = String.valueOf(s.charAt(2));
+            Log.d(TAG, "ITS A 10:" + s);
+        }
         int returnValue = 0;
 
         if(suitIn.equals("S"))
@@ -580,7 +621,7 @@ public class RideTheBusGame extends Fragment {
                 case "9" :
                     returnValue = R.drawable.s9;
                     break;
-                case "10" :
+                case "1" :
                     returnValue = R.drawable.s10;
                     break;
                 case "J" :
@@ -628,7 +669,7 @@ public class RideTheBusGame extends Fragment {
                 case "9" :
                     returnValue = R.drawable.h9;
                     break;
-                case "10" :
+                case "1" :
                     returnValue = R.drawable.h10;
                     break;
                 case "J" :
@@ -675,7 +716,7 @@ public class RideTheBusGame extends Fragment {
                 case "9" :
                     returnValue = R.drawable.c9;
                     break;
-                case "10" :
+                case "1" :
                     returnValue = R.drawable.c10;
                     break;
                 case "J" :
@@ -723,7 +764,7 @@ public class RideTheBusGame extends Fragment {
                 case "9" :
                     returnValue = R.drawable.d9;
                     break;
-                case "10" :
+                case "1" :
                     returnValue = R.drawable.d10;
                     break;
                 case "J" :

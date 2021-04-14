@@ -45,5 +45,9 @@ public class Hand implements Serializable {
         return this.card4;
     }
 
+    public String toString(){
+        return card1 + " " + card2 + " " + card3 +  " " + card4;
+    }
+
 
 }

@@ -32,6 +32,7 @@ public class RideTheBus implements Game {
         // Default constructor required for calls to DataSnapshot.getValue(Game.class)
     }
     public RideTheBus(String id, User host){
+        Log.d("TAG", "CONSTRICT RTB");
         this.id=id;
         this.users=new ArrayList<User>();
         this.users.add(host);
@@ -56,6 +57,12 @@ public class RideTheBus implements Game {
     public String getCard2(){ return this.hands.get(this.turn).getCard2();}
     public String getCard3(){ return this.hands.get(this.turn).getCard3();}
     public String getCard4(){ return this.hands.get(this.turn).getCard4();}
+    public ArrayList<Hand> getHands(){
+        return this.hands;
+    }
+    public void setHands(ArrayList<Hand> hands){
+         this.hands =hands;
+    }
     public boolean isStarted(){ return this.isStarted; }
 
     public int getStreak(){
@@ -144,10 +151,13 @@ public class RideTheBus implements Game {
 
 */
 
-    public void setCard1(String card){this.hands.get(0).addCard(card,0);}
-    public void setCard2(String card){this.hands.get(0).addCard(card,1);}
-    public void setCard3(String card){this.hands.get(0).addCard(card,2);}
-    public void setCard4(String card){this.hands.get(0).addCard(card,3);}
+    public void setCard1(String card){
+        Log.d("TAG", "SET CARD1" + this.hands);
+        if(this.hands!=null)
+        this.hands.get(0).addCard(card,0);}
+    public void setCard2(String card){if(this.hands!=null)this.hands.get(0).addCard(card,1);}
+    public void setCard3(String card){if(this.hands!=null)this.hands.get(0).addCard(card,2);}
+    public void setCard4(String card){if(this.hands!=null)this.hands.get(0).addCard(card,3);}
 
 
 
@@ -158,10 +168,11 @@ public class RideTheBus implements Game {
     public String toString(){
         String result = "";
         result+="Card1" + this.hands.get(getTurn()).getCard1();
-        result+="Card1" + this.hands.get(getTurn()).getCard1();
-        result+="Card1" + this.hands.get(getTurn()).getCard1();
-        result+="Card1" + this.hands.get(getTurn()).getCard1();
-        result+="Users" + this.users.size();
+        result+="\nCard1" + this.hands.get(getTurn()).getCard1();
+        result+="\nCard1" + this.hands.get(getTurn()).getCard1();
+        result+="\nCard1" + this.hands.get(getTurn()).getCard1();
+        result+="\nUsers" + this.users.size();
+        result+="\nHands" + this.hands.size() + " " + this.hands.toString();
         return result;
     }
 

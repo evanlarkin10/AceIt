@@ -87,10 +87,19 @@ public class CatchTheDealerScreen extends Fragment {
                     Log.e("firebase", "Error getting data", task.getException());
                 }
                 else {
+                    try{
                     DataSnapshot dataSnapshot = task.getResult();
                     CatchTheDealer game =  dataSnapshot.getValue(CatchTheDealer.class);
                     game.setStatus(GameStatus.STARTED);
                     myRef.child(id).setValue(game);
+                }catch(Exception e){
+                    Context context = getActivity().getApplicationContext();
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, "ERROR", duration);
+                    toast.show();
+                    NavHostFragment.findNavController(CatchTheDealerScreen.this)
+                            .navigate(R.id.action_catch_the_dealer_home);
+                }
                 }
             }
         });

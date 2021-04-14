@@ -108,13 +108,22 @@ public class HorseRaceScreen extends Fragment {
         ValueEventListener gameListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d(TAG, snapshot.getValue().toString());
-                Log.d(TAG,"Listened");
+                try {
+                    Log.d(TAG, snapshot.getValue().toString());
+                    Log.d(TAG, "Listened");
 
-                HorseRace game = snapshot.getValue(HorseRace.class);
-                //game.setStatus(GameStatus.STARTED);
-                setGame(game);
-                handleGameStateUpdate();
+                    HorseRace game = snapshot.getValue(HorseRace.class);
+                    //game.setStatus(GameStatus.STARTED);
+                    setGame(game);
+                    handleGameStateUpdate();
+                }catch(Exception e){
+                    Context context = getActivity().getApplicationContext();
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, "ERROR", duration);
+                    toast.show();
+                    NavHostFragment.findNavController(HorseRaceScreen.this)
+                            .navigate(R.id.action_horserace_to_homescreen);
+                }
             }
 
             @Override
