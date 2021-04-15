@@ -28,11 +28,11 @@
         This process is carried out until the deck is completed.
     </string>
     <string name="ride_the_bus_rules">This game is carried out in 4 stages and involves guessing with increasing difficulty. Everyone will get a turn at each stage. The first stage is guessing the color of the card, red or black. The second stage is guessing whether the second card is higher or lower than your first. The identical number does not count. The third round is guessing whether your card will be in between or outside your previous two cards.
-        The fourth round will be guessing the suit of the card to be drawn.
+        The fourth round will be guessing the suit of the card to be drawn. For every incorrect guess, take 1 drink.
     </string>
     <string name="rules">Rules</string>
     <string name="previous">Previous</string>
-    <string name="Ride_the_bus">Ride The bus</string>
+    <string name="Ride_the_bus">Cross The Bridge</string>
 
     <string name="hello_first_fragment">Ace It</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
